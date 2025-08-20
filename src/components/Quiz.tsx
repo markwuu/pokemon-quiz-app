@@ -8,6 +8,7 @@ interface IProps {
   progress: string;
   questionData: any;
   setSelectedOption: (arg0: number | null) => void;
+  nextQuestion: () => void;
 }
 
 const Quiz: FC<IProps> = ({
@@ -17,6 +18,7 @@ const Quiz: FC<IProps> = ({
   questionData,
   progress,
   setSelectedOption,
+  nextQuestion,
 }) => {
   const options = questionData?.options;
   const [answer, setAnswer] = useState("");
@@ -30,8 +32,17 @@ const Quiz: FC<IProps> = ({
   return (
     <div id="quiz-screen" className={`screen ${quizScreenActive}`}>
       <div className="question-header">
-        <h2 id="question-text">{questionData?.question}</h2>
         <div id="progress">{progress}</div>
+        <div className="pokemon-card">
+          <img
+            alt={questionData?.options[answer]}
+            src={questionData?.image}
+            className="pokemon-card-image"
+          />
+          <div className="question-container">
+            <p>Who's that pokemon?</p>
+          </div>
+        </div>
       </div>
       <div id="options" className="options">
         {options?.map((option: string, index: number) => {
@@ -47,7 +58,10 @@ const Quiz: FC<IProps> = ({
           );
         })}
       </div>
-      <button id="next-btn" disabled={nextButtonDisabled}>
+      <button
+        id="next-btn"
+        disabled={nextButtonDisabled}
+        onClick={nextQuestion}>
         Next
       </button>
     </div>
