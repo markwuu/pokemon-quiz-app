@@ -1,38 +1,112 @@
-.App {
+/* style.css */
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: black;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 450px;
+  width: 450px;
+  background: #fff1f1;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.screen {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.screen.active {
+  display: flex;
+}
+
+h1,
+h2 {
+  margin: 0;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button {
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  background: #4a90e2;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+button:hover:not(:disabled) {
+  background: #357ab8;
+}
+
+.options {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 10px;
+}
+
+.option-btn {
+  background: #b85151;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.option-btn:hover {
+  background: #ddd;
+}
+
+.option-btn.selected {
+  background: #7aa7cc;
+}
+
+#progress {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.question-container > p {
+  font-weight: 300;
+  font-size: 19px;
+}
+
+.pokemon-card {
+  width: 100%;
+  background-color: white;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: anchor-center;
+  border: 5px solid #e04848;
 }
 
-.App-link {
-  color: #61dafb;
+.pokemon-card-image {
+  max-height: 150px;
+  padding-top: 22px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#score-text {
+  text-align: center;
 }
