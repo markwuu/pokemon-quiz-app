@@ -110,3 +110,19 @@ button:hover:not(:disabled) {
 #score-text {
   text-align: center;
 }
+
+#difficulty-container {
+  display: flex;
+  padding-top: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#difficulty-btn {
+  flex: 1;
+  background: #973381;
+}
+
+#difficulty-btn:hover:not(:disabled) {
+  background: #6a215a;
+}
