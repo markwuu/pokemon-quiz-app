@@ -19,10 +19,11 @@ const App: FC = () => {
   const [showResultsScreen, setShowResultsScreen] = useState(false);
   const [questions, setQuestions] = useState<any>([]);
   let finalScore = `${score} out of ${questions.length}`;
+  const perfectScore = score === questions.length;
 
   const fetchPokemonQuestions = async () => {
     try {
-      const pokemonQuestions = await createPokemonQuestionArray(10);
+      const pokemonQuestions = await createPokemonQuestionArray(5);
       const result = await pokemonQuestions;
       setQuestions(result);
       setStartButtonDisabled(false);
@@ -110,6 +111,7 @@ const App: FC = () => {
             resultsScreenActive={resultsScreenActive}
             finalScore={finalScore}
             retartQuiz={retartQuiz}
+            perfectScore={perfectScore}
           />
         </div>
       </header>
