@@ -12,7 +12,7 @@ const Welcome: FC<IProps> = ({ startQuiz, startButtonDisabled }) => {
   return (
     // Welcome Screen
     <>
-      <div className={`screen ${welcomeScreenActive}`}>
+      <div className={`screen`}>
         <h1 style={{ fontSize: "30px" }}>Test your Pokemon knowledge!</h1>
         <button
           onClick={startQuiz}
@@ -21,9 +21,7 @@ const Welcome: FC<IProps> = ({ startQuiz, startButtonDisabled }) => {
           Start Quiz
         </button>
       </div>
-      <div
-        id="difficulty-container"
-        className={`screen ${welcomeScreenActive}`}>
+      <div id="difficulty-container" className={`screen`}>
         {difficultyLevels.map((difficulty, index) => {
           return (
             <button
