@@ -29,7 +29,7 @@ const Start: FC<IProps> = ({ startQuiz, quizDataLoaded }) => {
           onClick={startQuiz}
           id="start-btn"
           disabled={startButtonDisabled}>
-          Start Quiz
+          {quizDataLoaded ? "Start Quiz" : "Loading..."}
         </button>
       </div>
       <div id="difficulty-container" className={`screen`}>
