@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import "../App.css";
 
 interface IProps {
@@ -8,16 +8,18 @@ interface IProps {
 
 const Start: FC<IProps> = ({ startQuiz, quizDataLoaded }) => {
   const difficultyLevels = ["Easy", "Medium", "Hard", "Impossible"];
-  const [difficultyLevel, setDifficultyLevel] = useState("");
+  const [difficultyLevel, setDifficultyLevel] = useState<string | null>(null);
+  const [startButtonDisabled, setStartButtonDisabled] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (difficultyLevel !== null && quizDataLoaded) {
+      setStartButtonDisabled(false);
+    }
+  }, [difficultyLevel, quizDataLoaded]);
 
   const handleClick = (option: string, index: number) => {
     setDifficultyLevel(option);
-    // setNextButtonDisabled(false);
-    // setSelectedOption(index);
   };
-
-  //add logic to only enable start button once difficulty is selected
-  const startButtonDisabled = !quizDataLoaded;
 
   return (
     <>
@@ -40,9 +42,7 @@ const Start: FC<IProps> = ({ startQuiz, quizDataLoaded }) => {
             <button
               onClick={() => handleClick(difficulty, index)}
               key={index}
-              className={className}
-              // disabled={startButtonDisabled}
-            >
+              className={className}>
               {difficulty}
             </button>
           );
