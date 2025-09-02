@@ -2,21 +2,15 @@ import { FC } from "react";
 import "../App.css";
 
 interface IProps {
-  resultsScreenActive: string;
   finalScore: string;
   retartQuiz: () => void;
   perfectScore: boolean;
 }
 
-const Results: FC<IProps> = ({
-  resultsScreenActive,
-  finalScore,
-  retartQuiz,
-  perfectScore,
-}) => {
+const Results: FC<IProps> = ({ finalScore, retartQuiz, perfectScore }) => {
   return (
     // Results Screen
-    <div id="result-screen" className={`screen ${resultsScreenActive}`}>
+    <div id="result-screen" className={`screen`}>
       {perfectScore ? (
         <h1>{`Congratulations! You're a Pokemon Master!`}</h1>
       ) : null}

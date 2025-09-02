@@ -85,34 +85,33 @@ const App: FC = () => {
     fetchPokemonQuestions();
   };
 
-  let welcomeScreenActive = showWelcomeScreen ? "active" : "";
-  let quizScreenActive = showQuizScreen ? "active" : "";
-  let resultsScreenActive = showResultsScreen ? "active" : "";
-
   return (
     <div className="App">
       <header className="App-header">
         <div className="container">
-          <Welcome
-            welcomeScreenActive={welcomeScreenActive}
-            startButtonDisabled={startButtonDisabled}
-            startQuiz={startQuiz}
-          />
-          <Quiz
-            setNextButtonDisabled={setNextButtonDisabled}
-            nextButtonDisabled={nextButtonDisabled}
-            quizScreenActive={quizScreenActive}
-            questionData={questionData}
-            progress={progress}
-            setSelectedOption={setSelectedOption}
-            nextQuestion={nextQuestion}
-          />
-          <Results
-            resultsScreenActive={resultsScreenActive}
-            finalScore={finalScore}
-            retartQuiz={retartQuiz}
-            perfectScore={perfectScore}
-          />
+          {showWelcomeScreen ? (
+            <Welcome
+              startButtonDisabled={startButtonDisabled}
+              startQuiz={startQuiz}
+            />
+          ) : null}
+          {showQuizScreen ? (
+            <Quiz
+              setNextButtonDisabled={setNextButtonDisabled}
+              nextButtonDisabled={nextButtonDisabled}
+              questionData={questionData}
+              progress={progress}
+              setSelectedOption={setSelectedOption}
+              nextQuestion={nextQuestion}
+            />
+          ) : null}
+          {showResultsScreen ? (
+            <Results
+              finalScore={finalScore}
+              retartQuiz={retartQuiz}
+              perfectScore={perfectScore}
+            />
+          ) : null}
         </div>
       </header>
     </div>

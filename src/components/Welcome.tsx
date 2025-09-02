@@ -2,16 +2,11 @@ import { FC } from "react";
 import "../App.css";
 
 interface IProps {
-  welcomeScreenActive: string;
   startQuiz: () => void;
   startButtonDisabled: boolean;
 }
 
-const Welcome: FC<IProps> = ({
-  welcomeScreenActive,
-  startQuiz,
-  startButtonDisabled,
-}) => {
+const Welcome: FC<IProps> = ({ startQuiz, startButtonDisabled }) => {
   const difficultyLevels = ["Easy", "Medium", "Hard", "Impossible"];
 
   return (

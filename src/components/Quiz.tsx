@@ -4,7 +4,6 @@ import "../App.css";
 interface IProps {
   setNextButtonDisabled: (arg0: boolean) => void;
   nextButtonDisabled: boolean;
-  quizScreenActive: string;
   progress: string;
   questionData: any;
   setSelectedOption: (arg0: number | null) => void;
@@ -14,7 +13,6 @@ interface IProps {
 const Quiz: FC<IProps> = ({
   setNextButtonDisabled,
   nextButtonDisabled,
-  quizScreenActive,
   questionData,
   progress,
   setSelectedOption,
@@ -30,7 +28,7 @@ const Quiz: FC<IProps> = ({
   };
 
   return (
-    <div id="quiz-screen" className={`screen ${quizScreenActive}`}>
+    <div id="quiz-screen" className={`screen`}>
       <div className="question-header">
         <div id="progress">{progress}</div>
         <div className="pokemon-card">
