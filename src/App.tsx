@@ -9,7 +9,7 @@ import { createPokemonQuestionArray } from "./helperFunctions";
 const App: FC = () => {
   const [showStartScreen, setShowStartScreen] = useState(true);
   const [showQuizScreen, setShowQuizScreen] = useState(false);
-  const [startButtonDisabled, setStartButtonDisabled] = useState<boolean>(true);
+  const [quizDataLoaded, setQuizDataLoaded] = useState<boolean>(false);
   const [nextButtonDisabled, setNextButtonDisabled] = useState<boolean>(true);
   const [questionData, setQuestionData] = useState<Question>();
   const [progress, setProgress] = useState("");
@@ -26,7 +26,7 @@ const App: FC = () => {
       const pokemonQuestions = await createPokemonQuestionArray(5);
       const result = await pokemonQuestions;
       setQuestions(result);
-      setStartButtonDisabled(false);
+      setQuizDataLoaded(true);
     } catch (err) {
       console.log("error fetching pokemon questions", err);
     }
@@ -81,7 +81,7 @@ const App: FC = () => {
     setCurrentQuestion(0);
     setScore(0);
     setQuestions([]);
-    setStartButtonDisabled(true);
+    setQuizDataLoaded(false);
     fetchPokemonQuestions();
   };
 
@@ -90,10 +90,7 @@ const App: FC = () => {
       <header className="App-header">
         <div className="container">
           {showStartScreen ? (
-            <Start
-              startButtonDisabled={startButtonDisabled}
-              startQuiz={startQuiz}
-            />
+            <Start quizDataLoaded={quizDataLoaded} startQuiz={startQuiz} />
           ) : null}
           {showQuizScreen ? (
             <Quiz

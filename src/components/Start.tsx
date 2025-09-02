@@ -3,10 +3,10 @@ import "../App.css";
 
 interface IProps {
   startQuiz: () => void;
-  startButtonDisabled: boolean;
+  quizDataLoaded: boolean;
 }
 
-const Start: FC<IProps> = ({ startQuiz, startButtonDisabled }) => {
+const Start: FC<IProps> = ({ startQuiz, quizDataLoaded }) => {
   const difficultyLevels = ["Easy", "Medium", "Hard", "Impossible"];
   const [difficultyLevel, setDifficultyLevel] = useState("");
 
@@ -16,8 +16,10 @@ const Start: FC<IProps> = ({ startQuiz, startButtonDisabled }) => {
     // setSelectedOption(index);
   };
 
+  //add logic to only enable start button once difficulty is selected
+  const startButtonDisabled = !quizDataLoaded;
+
   return (
-    // Welcome Screen
     <>
       <div className={`screen`}>
         <h1 style={{ fontSize: "30px" }}>Test your Pokemon knowledge!</h1>
@@ -39,7 +41,8 @@ const Start: FC<IProps> = ({ startQuiz, startButtonDisabled }) => {
               onClick={() => handleClick(difficulty, index)}
               key={index}
               className={className}
-              disabled={startButtonDisabled}>
+              // disabled={startButtonDisabled}
+            >
               {difficulty}
             </button>
           );
