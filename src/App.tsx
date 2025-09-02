@@ -1,13 +1,13 @@
 import { FC, useState, useEffect } from "react";
 import "./App.css";
-import Welcome from "./components/Welcome";
+import Start from "./components/Start";
 import Quiz from "./components/Quiz";
 import Results from "./components/Results";
 import { Question } from "./types/Question";
 import { createPokemonQuestionArray } from "./helperFunctions";
 
 const App: FC = () => {
-  const [showWelcomeScreen, setShowWelcomeScreen] = useState(true);
+  const [showStartScreen, setShowStartScreen] = useState(true);
   const [showQuizScreen, setShowQuizScreen] = useState(false);
   const [startButtonDisabled, setStartButtonDisabled] = useState<boolean>(true);
   const [nextButtonDisabled, setNextButtonDisabled] = useState<boolean>(true);
@@ -48,7 +48,7 @@ const App: FC = () => {
   };
 
   const startQuiz = () => {
-    setShowWelcomeScreen(false);
+    setShowStartScreen(false);
     showQuiz();
     showQuestion();
   };
@@ -74,7 +74,7 @@ const App: FC = () => {
   const retartQuiz = () => {
     setShowQuizScreen(false);
     setShowResultsScreen(false);
-    setShowWelcomeScreen(true);
+    setShowStartScreen(true);
     setNextButtonDisabled(true);
     setProgress("");
     setSelectedOption(null);
@@ -89,8 +89,8 @@ const App: FC = () => {
     <div className="App">
       <header className="App-header">
         <div className="container">
-          {showWelcomeScreen ? (
-            <Welcome
+          {showStartScreen ? (
+            <Start
               startButtonDisabled={startButtonDisabled}
               startQuiz={startQuiz}
             />

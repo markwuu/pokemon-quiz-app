@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import "../App.css";
 
 interface IProps {
@@ -6,8 +6,15 @@ interface IProps {
   startButtonDisabled: boolean;
 }
 
-const Welcome: FC<IProps> = ({ startQuiz, startButtonDisabled }) => {
+const Start: FC<IProps> = ({ startQuiz, startButtonDisabled }) => {
   const difficultyLevels = ["Easy", "Medium", "Hard", "Impossible"];
+  const [difficultyLevel, setDifficultyLevel] = useState("");
+
+  const handleClick = (option: string, index: number) => {
+    setDifficultyLevel(option);
+    // setNextButtonDisabled(false);
+    // setSelectedOption(index);
+  };
 
   return (
     // Welcome Screen
@@ -23,13 +30,15 @@ const Welcome: FC<IProps> = ({ startQuiz, startButtonDisabled }) => {
       </div>
       <div id="difficulty-container" className={`screen`}>
         {difficultyLevels.map((difficulty, index) => {
+          let className =
+            difficultyLevel === difficulty
+              ? "difficulty-btn selected"
+              : "difficulty-btn";
           return (
             <button
-              onClick={() => {
-                console.log("selecting difficulty");
-              }}
+              onClick={() => handleClick(difficulty, index)}
               key={index}
-              id="difficulty-btn"
+              className={className}
               disabled={startButtonDisabled}>
               {difficulty}
             </button>
@@ -40,4 +49,4 @@ const Welcome: FC<IProps> = ({ startQuiz, startButtonDisabled }) => {
   );
 };
 
-export default Welcome;
+export default Start;

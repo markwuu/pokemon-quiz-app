@@ -115,11 +115,15 @@ button:hover:not(:disabled) {
   justify-content: space-between;
 }
 
-#difficulty-btn {
+.difficulty-btn {
   flex: 1;
   background: #973381;
 }
 
-#difficulty-btn:hover:not(:disabled) {
+.difficulty-btn.selected {
+  background: #6a215a;
+}
+
+.difficulty-btn:hover:not(:disabled) {
   background: #6a215a;
 }
