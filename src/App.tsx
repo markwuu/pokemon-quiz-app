@@ -1,10 +1,11 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useCallback } from "react";
 import "./App.css";
 import Start from "./components/Start";
 import Quiz from "./components/Quiz";
 import Results from "./components/Results";
 import { Question } from "./types/Question";
 import { createPokemonQuestionArray } from "./helperFunctions";
+import { ToastContainer, toast } from "react-toastify";
 
 const App: FC = () => {
   const [showStartScreen, setShowStartScreen] = useState(true);
@@ -18,11 +19,23 @@ const App: FC = () => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [showResultsScreen, setShowResultsScreen] = useState(false);
   const [questions, setQuestions] = useState<any>([]);
+  const [difficultyLevel, setDifficultyLevel] = useState<string | null>(null);
+  const [startButtonDisabled, setStartButtonDisabled] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (difficultyLevel !== null && quizDataLoaded) {
+      setStartButtonDisabled(false);
+    }
+  }, [difficultyLevel, quizDataLoaded]);
+
   let finalScore = `${score} out of ${questions.length}`;
   const perfectScore = score === questions.length;
 
-  const fetchPokemonQuestions = async () => {
+  const displayToast = (message: string) => toast(message);
+
+  const fetchPokemonQuestions = useCallback(async () => {
     try {
+      displayToast("Loading data...");
       const pokemonQuestions = await createPokemonQuestionArray(5);
       const result = await pokemonQuestions;
       setQuestions(result);
@@ -30,11 +43,13 @@ const App: FC = () => {
     } catch (err) {
       console.log("error fetching pokemon questions", err);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    fetchPokemonQuestions();
-  }, []);
+    if (difficultyLevel) {
+      fetchPokemonQuestions();
+    }
+  }, [difficultyLevel, fetchPokemonQuestions]);
 
   const showQuiz = () => {
     setShowQuizScreen(true);
@@ -90,7 +105,13 @@ const App: FC = () => {
       <header className="App-header">
         <div className="container">
           {showStartScreen ? (
-            <Start quizDataLoaded={quizDataLoaded} startQuiz={startQuiz} />
+            <Start
+              quizDataLoaded={quizDataLoaded}
+              startQuiz={startQuiz}
+              difficultyLevel={difficultyLevel}
+              setDifficultyLevel={setDifficultyLevel}
+              startButtonDisabled={startButtonDisabled}
+            />
           ) : null}
           {showQuizScreen ? (
             <Quiz
@@ -111,6 +132,7 @@ const App: FC = () => {
           ) : null}
         </div>
       </header>
+      <ToastContainer />
     </div>
   );
 };

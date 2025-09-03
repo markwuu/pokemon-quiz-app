@@ -1,21 +1,22 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import "../App.css";
 
 interface IProps {
   startQuiz: () => void;
   quizDataLoaded: boolean;
+  difficultyLevel: string | null;
+  setDifficultyLevel: (arg0: string | null) => void;
+  startButtonDisabled: boolean;
 }
 
-const Start: FC<IProps> = ({ startQuiz, quizDataLoaded }) => {
+const Start: FC<IProps> = ({
+  startQuiz,
+  quizDataLoaded,
+  difficultyLevel,
+  setDifficultyLevel,
+  startButtonDisabled,
+}) => {
   const difficultyLevels = ["Easy", "Medium", "Hard", "Impossible"];
-  const [difficultyLevel, setDifficultyLevel] = useState<string | null>(null);
-  const [startButtonDisabled, setStartButtonDisabled] = useState<boolean>(true);
-
-  useEffect(() => {
-    if (difficultyLevel !== null && quizDataLoaded) {
-      setStartButtonDisabled(false);
-    }
-  }, [difficultyLevel, quizDataLoaded]);
 
   const handleClick = (option: string, index: number) => {
     setDifficultyLevel(option);
@@ -24,12 +25,13 @@ const Start: FC<IProps> = ({ startQuiz, quizDataLoaded }) => {
   return (
     <>
       <div className={`screen`}>
-        <h1 style={{ fontSize: "30px" }}>Test your Pokemon knowledge!</h1>
+        <h1>Test your Pokemon knowledge!</h1>
         <button
           onClick={startQuiz}
           id="start-btn"
           disabled={startButtonDisabled}>
-          {quizDataLoaded ? "Start Quiz" : "Loading..."}
+          {/* {quizDataLoaded ? "Start Quiz" : "Loading..."} */}
+          Start Quiz
         </button>
       </div>
       <div id="difficulty-container" className={`screen`}>
