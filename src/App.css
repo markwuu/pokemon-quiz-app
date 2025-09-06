@@ -82,6 +82,10 @@ button:hover:not(:disabled) {
   background: #7aa7cc;
 }
 
+#next-btn {
+  margin-top: 20px;
+}
+
 #progress {
   text-align: right;
   font-size: 0.9rem;
