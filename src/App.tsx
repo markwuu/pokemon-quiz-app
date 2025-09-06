@@ -31,15 +31,17 @@ const App: FC = () => {
   let finalScore = `${score} out of ${questions.length}`;
   const perfectScore = score === questions.length;
 
-  const displayToast = (message: string) => toast(message);
+  // const displayToast = (message: string) => toast(message);
 
   const fetchPokemonQuestions = useCallback(async () => {
     try {
-      displayToast("Loading data...");
+      toast.loading("Loading quiz data...");
       const pokemonQuestions = await createPokemonQuestionArray(5);
       const result = await pokemonQuestions;
       setQuestions(result);
       setQuizDataLoaded(true);
+      toast.dismiss();
+      toast.success("Quiz data loaded successfully!");
     } catch (err) {
       console.log("error fetching pokemon questions", err);
     }
@@ -132,7 +134,7 @@ const App: FC = () => {
           ) : null}
         </div>
       </header>
-      <ToastContainer />
+      <ToastContainer position="bottom-center" />
     </div>
   );
 };
