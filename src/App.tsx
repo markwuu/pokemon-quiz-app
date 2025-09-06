@@ -65,6 +65,7 @@ const App: FC = () => {
   };
 
   const startQuiz = () => {
+    toast.dismiss();
     setShowStartScreen(false);
     showQuiz();
     showQuestion();
