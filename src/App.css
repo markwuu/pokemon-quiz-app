@@ -31,7 +31,7 @@ body {
 
 .screen > p {
   text-align: center;
-  font-size: 11px;
+  font-size: 14px;
 }
 
 h1,
@@ -115,10 +115,6 @@ button:hover:not(:disabled) {
 .pokemon-card-image {
   max-height: 150px;
   padding-top: 22px;
-}
-
-#score-text {
-  text-align: center;
 }
 
 #difficulty-container {
