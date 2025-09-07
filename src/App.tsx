@@ -90,6 +90,8 @@ const App: FC = () => {
   };
 
   const retartQuiz = () => {
+    setStartButtonDisabled(true);
+    setDifficultyLevel(null);
     setShowQuizScreen(false);
     setShowResultsScreen(false);
     setShowStartScreen(true);
@@ -100,7 +102,6 @@ const App: FC = () => {
     setScore(0);
     setQuestions([]);
     setQuizDataLoaded(false);
-    fetchPokemonQuestions();
   };
 
   return (
