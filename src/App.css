@@ -12,7 +12,7 @@ body {
 .container {
   max-width: 450px;
   width: 450px;
-  background: #fff1f1;
+  background: #2f32ab;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -27,11 +27,17 @@ body {
 .screen > h1 {
   font-size: 30px;
   padding-bottom: 20px;
+  color: white;
+}
+
+.screen > h2 {
+  color: white;
 }
 
 .screen > p {
   text-align: center;
   font-size: 14px;
+  color: white;
 }
 
 h1,
@@ -44,7 +50,7 @@ button {
   padding: 12px;
   font-size: 1rem;
   border: none;
-  background: #4a90e2;
+  background: #29a52d;
   color: white;
   border-radius: 5px;
   cursor: pointer;
@@ -57,7 +63,7 @@ button:disabled {
 }
 
 button:hover:not(:disabled) {
-  background: #357ab8;
+  background: #7aa7cc;
 }
 
 .options {
@@ -67,7 +73,7 @@ button:hover:not(:disabled) {
 }
 
 .option-btn {
-  background: #b85151;
+  background: #b62a2a;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
@@ -75,7 +81,7 @@ button:hover:not(:disabled) {
 }
 
 .option-btn:hover {
-  background: #ddd;
+  background: #7aa7cc;
 }
 
 .option-btn.selected {
@@ -126,13 +132,13 @@ button:hover:not(:disabled) {
 
 .difficulty-btn {
   flex: 1;
-  background: #973381;
+  background: #ac1431;
 }
 
 .difficulty-btn.selected {
-  background: #6a215a;
+  background: #1f8122;
 }
 
 .difficulty-btn:hover:not(:disabled) {
-  background: #6a215a;
+  background: #1f8122;
 }
