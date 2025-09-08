@@ -55,6 +55,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s;
+  box-shadow: 0 7px #807c7c;
 }
 
 button:disabled {
@@ -66,10 +67,16 @@ button:hover:not(:disabled) {
   background: #7aa7cc;
 }
 
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 .options {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 17px;
 }
 
 .option-btn {
@@ -136,9 +143,9 @@ button:hover:not(:disabled) {
 }
 
 .difficulty-btn.selected {
-  background: #1f8122;
+  background: #1a6a1c;
 }
 
 .difficulty-btn:hover:not(:disabled) {
-  background: #1f8122;
+  background: #1a6a1c;
 }
