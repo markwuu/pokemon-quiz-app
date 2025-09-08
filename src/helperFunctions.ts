@@ -1,16 +1,12 @@
 import { PokemonClient } from "pokenode-ts";
 import pokemonJSON from "./pokemon.json";
 
-export const getRandomPokemonSpecies = async () => {
-  const randomInteger = Math.floor(Math.random() * 1025);
-  const api = new PokemonClient();
-  const pokemon = await api
-    .getPokemonSpeciesById(randomInteger)
-    .then((pokemon) => pokemon)
-    .catch((error) => console.error(error));
-
-  return pokemon;
-};
+// interface PokemonCries extends Pokemon {
+//   cries: {
+//     latest: string;
+//     legacy: string;
+//   };
+// }
 
 export const getRandomNonRepeatingIntegers = (
   min: number,
@@ -49,7 +45,19 @@ export const getPokemonNameById = async (pokemonNumber: number) => {
   return pokemon?.name;
 };
 
-const createPokemonQuestion = async () => {
+export const getPokemonCryByName = async (pokemonName: string) => {
+  const api = new PokemonClient();
+  const pokemonCry = await api
+    .getPokemonByName(pokemonName)
+    .then((pokemon: any) => {
+      return pokemon?.cries?.latest;
+    })
+    .catch((error) => console.error(error));
+
+  return pokemonCry;
+};
+
+const createPokemonQuestion = async (difficulty: string) => {
   const randomNumbers = getRandomNonRepeatingIntegers(1, 1025, 4);
   const pokemonArray = [
     pokemonJSON[randomNumbers[0] - 1].name,
@@ -59,22 +67,35 @@ const createPokemonQuestion = async () => {
   ];
   const answerIndex = getRandomInteger(0, 3);
   const pokemonNumber = randomNumbers[answerIndex];
-  const pokemonName = await getPokemonNameById(pokemonNumber);
+  let pokemonName;
+  let pokemonCry;
+
+  if (difficulty === "Hard") {
+    pokemonCry = await getPokemonCryByName(pokemonArray[answerIndex]);
+  } else {
+    pokemonName = await getPokemonNameById(pokemonNumber);
+  }
 
   const pokemonQuestion = {
     question: "Who's that pokemon?",
-    image: `https://img.pokemondb.net/artwork/large/${pokemonName}.jpg`,
+    image: pokemonName
+      ? `https://img.pokemondb.net/artwork/large/${pokemonName}.jpg`
+      : null,
     options: pokemonArray,
     answer: answerIndex,
+    cry: pokemonCry,
   };
 
   return pokemonQuestion;
 };
 
-export const createPokemonQuestionArray = async (numberOfQuestions: number) => {
+export const createPokemonQuestionArray = async (
+  numberOfQuestions: number,
+  difficulty: string
+) => {
   let pokemonQuestions = [];
   for (let i = 0; i < numberOfQuestions; i++) {
-    pokemonQuestions.push(await createPokemonQuestion());
+    pokemonQuestions.push(await createPokemonQuestion(difficulty));
   }
   return pokemonQuestions;
 };

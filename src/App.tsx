@@ -31,12 +31,10 @@ const App: FC = () => {
   let finalScore = `${score} out of ${questions.length}`;
   const perfectScore = score === questions.length;
 
-  // const displayToast = (message: string) => toast(message);
-
-  const fetchPokemonQuestions = useCallback(async () => {
+  const fetchPokemonQuestions = useCallback(async (difficulty: string) => {
     try {
       toast.loading("Loading quiz data...");
-      const pokemonQuestions = await createPokemonQuestionArray(5);
+      const pokemonQuestions = await createPokemonQuestionArray(5, difficulty);
       const result = await pokemonQuestions;
       setQuestions(result);
       setQuizDataLoaded(true);
@@ -49,7 +47,7 @@ const App: FC = () => {
 
   useEffect(() => {
     if (difficultyLevel) {
-      fetchPokemonQuestions();
+      fetchPokemonQuestions(difficultyLevel);
     }
   }, [difficultyLevel, fetchPokemonQuestions]);
 

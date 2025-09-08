@@ -19,6 +19,7 @@ const Quiz: FC<IProps> = ({
   nextQuestion,
 }) => {
   const options = questionData?.options;
+  const pokemonCry = questionData?.cry;
   const [answer, setAnswer] = useState("");
 
   const handleClick = (option: string, index: number) => {
@@ -37,6 +38,9 @@ const Quiz: FC<IProps> = ({
             src={questionData?.image}
             className="pokemon-card-image"
           />
+          {pokemonCry ? (
+            <audio src={pokemonCry} autoPlay={true} controls={true}></audio>
+          ) : null}
           <div className="question-container">
             <p>Who's that pokemon?</p>
           </div>
