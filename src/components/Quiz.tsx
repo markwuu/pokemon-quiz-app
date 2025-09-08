@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import "../App.css";
+import { Difficulty } from "../types/Question";
 
 interface IProps {
   setNextButtonDisabled: (arg0: boolean) => void;
@@ -8,7 +9,7 @@ interface IProps {
   questionData: any;
   setSelectedOption: (arg0: number | null) => void;
   nextQuestion: () => void;
-  difficultyLevel: string;
+  difficultyLevel: Difficulty | null;
 }
 
 const Quiz: FC<IProps> = ({
@@ -23,12 +24,18 @@ const Quiz: FC<IProps> = ({
   const options = questionData?.options;
   const pokemonCry = questionData?.cry;
   const [answer, setAnswer] = useState("");
+  const multipleChoiceDifficulties = [Difficulty.Easy, Difficulty.Hard];
+  // const InputTextDifficulties = [Difficulty.Mediun];
 
   const handleClick = (option: string, index: number) => {
     setAnswer(option);
     setNextButtonDisabled(false);
     setSelectedOption(index);
   };
+
+  if (!difficultyLevel) {
+    return <p>difficulty not set...</p>;
+  }
 
   return (
     <div id="quiz-screen" className={`screen`}>
@@ -48,7 +55,7 @@ const Quiz: FC<IProps> = ({
           </div>
         </div>
       </div>
-      {difficultyLevel && ["Easy", "Hard"].includes(difficultyLevel) ? (
+      {multipleChoiceDifficulties.includes(difficultyLevel) ? (
         <div id="options" className="options">
           {options?.map((option: string, index: number) => {
             let className =

@@ -1,11 +1,12 @@
 import { FC } from "react";
 import "../App.css";
+import { Difficulty } from "../types/Question";
 
 interface IProps {
   startQuiz: () => void;
   quizDataLoaded: boolean;
   difficultyLevel: string | null;
-  setDifficultyLevel: (arg0: string) => void;
+  setDifficultyLevel: (arg0: Difficulty | null) => void;
   startButtonDisabled: boolean;
 }
 
@@ -16,9 +17,14 @@ const Start: FC<IProps> = ({
   setDifficultyLevel,
   startButtonDisabled,
 }) => {
-  const difficultyLevels = ["Easy", "Medium", "Hard", "Impossible"];
+  const difficultyLevels = [
+    Difficulty.Easy,
+    Difficulty.Mediun,
+    Difficulty.Hard,
+    Difficulty.Impossible,
+  ];
 
-  const handleClick = (option: string, index: number) => {
+  const handleClick = (option: Difficulty, index: number) => {
     setDifficultyLevel(option);
   };
 
@@ -30,7 +36,6 @@ const Start: FC<IProps> = ({
           onClick={startQuiz}
           id="start-btn"
           disabled={startButtonDisabled}>
-          {/* {quizDataLoaded ? "Start Quiz" : "Loading..."} */}
           Start Quiz
         </button>
       </div>
@@ -40,6 +45,7 @@ const Start: FC<IProps> = ({
             difficultyLevel === difficulty
               ? "difficulty-btn selected"
               : "difficulty-btn";
+
           return (
             <button
               onClick={() => handleClick(difficulty, index)}

@@ -5,8 +5,8 @@ export interface Question {
 }
 
 export enum Difficulty {
-  Easy = "EASY",
-  Mediun = "MEDIUM",
-  Hard = "HARD",
-  Impossible = "IMPOSSIBLE",
+  Easy = "Easy",
+  Mediun = "Medium",
+  Hard = "Hard",
+  Impossible = "Impossible",
 }

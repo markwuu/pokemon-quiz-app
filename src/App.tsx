@@ -3,7 +3,7 @@ import "./App.css";
 import Start from "./components/Start";
 import Quiz from "./components/Quiz";
 import Results from "./components/Results";
-import { Question } from "./types/Question";
+import { Difficulty, Question } from "./types/Question";
 import { createPokemonQuestionArray } from "./helperFunctions";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -19,7 +19,9 @@ const App: FC = () => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [showResultsScreen, setShowResultsScreen] = useState(false);
   const [questions, setQuestions] = useState<any>([]);
-  const [difficultyLevel, setDifficultyLevel] = useState<string>("");
+  const [difficultyLevel, setDifficultyLevel] = useState<Difficulty | null>(
+    null
+  );
   const [startButtonDisabled, setStartButtonDisabled] = useState<boolean>(true);
 
   useEffect(() => {
@@ -90,7 +92,7 @@ const App: FC = () => {
 
   const retartQuiz = () => {
     setStartButtonDisabled(true);
-    setDifficultyLevel("");
+    setDifficultyLevel(null);
     setShowQuizScreen(false);
     setShowResultsScreen(false);
     setShowStartScreen(true);
