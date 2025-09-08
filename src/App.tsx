@@ -75,6 +75,7 @@ const App: FC = () => {
   };
 
   const nextQuestion = () => {
+    setNextButtonDisabled(true);
     if (selectedOption === questionData?.answer) {
       setScore(score + 1);
     }
