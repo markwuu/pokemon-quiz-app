@@ -8,6 +8,7 @@ interface IProps {
   questionData: any;
   setSelectedOption: (arg0: number | null) => void;
   nextQuestion: () => void;
+  difficultyLevel: string;
 }
 
 const Quiz: FC<IProps> = ({
@@ -17,6 +18,7 @@ const Quiz: FC<IProps> = ({
   progress,
   setSelectedOption,
   nextQuestion,
+  difficultyLevel,
 }) => {
   const options = questionData?.options;
   const pokemonCry = questionData?.cry;
@@ -46,20 +48,22 @@ const Quiz: FC<IProps> = ({
           </div>
         </div>
       </div>
-      <div id="options" className="options">
-        {options?.map((option: string, index: number) => {
-          let className =
-            answer === option ? "option-btn selected" : "option-btn";
-          return (
-            <button
-              className={className}
-              key={index}
-              onClick={() => handleClick(option, index)}>
-              {option}
-            </button>
-          );
-        })}
-      </div>
+      {difficultyLevel && ["Easy", "Hard"].includes(difficultyLevel) ? (
+        <div id="options" className="options">
+          {options?.map((option: string, index: number) => {
+            let className =
+              answer === option ? "option-btn selected" : "option-btn";
+            return (
+              <button
+                className={className}
+                key={index}
+                onClick={() => handleClick(option, index)}>
+                {option}
+              </button>
+            );
+          })}
+        </div>
+      ) : null}
       <button
         id="next-btn"
         disabled={nextButtonDisabled}

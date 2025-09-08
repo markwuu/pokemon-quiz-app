@@ -5,7 +5,7 @@ interface IProps {
   startQuiz: () => void;
   quizDataLoaded: boolean;
   difficultyLevel: string | null;
-  setDifficultyLevel: (arg0: string | null) => void;
+  setDifficultyLevel: (arg0: string) => void;
   startButtonDisabled: boolean;
 }
 

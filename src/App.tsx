@@ -19,7 +19,7 @@ const App: FC = () => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [showResultsScreen, setShowResultsScreen] = useState(false);
   const [questions, setQuestions] = useState<any>([]);
-  const [difficultyLevel, setDifficultyLevel] = useState<string | null>(null);
+  const [difficultyLevel, setDifficultyLevel] = useState<string>("");
   const [startButtonDisabled, setStartButtonDisabled] = useState<boolean>(true);
 
   useEffect(() => {
@@ -90,7 +90,7 @@ const App: FC = () => {
 
   const retartQuiz = () => {
     setStartButtonDisabled(true);
-    setDifficultyLevel(null);
+    setDifficultyLevel("");
     setShowQuizScreen(false);
     setShowResultsScreen(false);
     setShowStartScreen(true);
@@ -124,6 +124,7 @@ const App: FC = () => {
               progress={progress}
               setSelectedOption={setSelectedOption}
               nextQuestion={nextQuestion}
+              difficultyLevel={difficultyLevel}
             />
           ) : null}
           {showResultsScreen ? (
