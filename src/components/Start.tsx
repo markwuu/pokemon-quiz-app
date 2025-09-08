@@ -41,6 +41,7 @@ const Start: FC<IProps> = ({
       </div>
       <div id="difficulty-container" className={`screen`}>
         {difficultyLevels.map((difficulty, index) => {
+          let isDisabled = difficulty === Difficulty.Impossible;
           let className =
             difficultyLevel === difficulty
               ? "difficulty-btn selected"
@@ -50,6 +51,7 @@ const Start: FC<IProps> = ({
             <button
               onClick={() => handleClick(difficulty, index)}
               key={index}
+              disabled={isDisabled}
               className={className}>
               {difficulty}
             </button>
