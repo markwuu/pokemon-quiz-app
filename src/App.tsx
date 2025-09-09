@@ -23,6 +23,7 @@ const App: FC = () => {
     null
   );
   const [startButtonDisabled, setStartButtonDisabled] = useState<boolean>(true);
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     if (difficultyLevel !== null && quizDataLoaded) {
@@ -77,10 +78,19 @@ const App: FC = () => {
   };
 
   const nextQuestion = () => {
+    if (!difficultyLevel) throw Error("Difficulty not set");
+
     setNextButtonDisabled(true);
-    if (selectedOption === questionData?.answer) {
-      setScore(score + 1);
+    if ([Difficulty.Easy, Difficulty.Hard].includes(difficultyLevel)) {
+      if (selectedOption === questionData?.answer) {
+        setScore(score + 1);
+      }
+    } else if ([Difficulty.Mediun].includes(difficultyLevel)) {
+      if (inputValue === questionData?.name) {
+        setScore(score + 1);
+      }
     }
+
     setCurrentQuestion(currentQuestion + 1);
 
     if (currentQuestion < questions.length) {
@@ -127,6 +137,8 @@ const App: FC = () => {
               setSelectedOption={setSelectedOption}
               nextQuestion={nextQuestion}
               difficultyLevel={difficultyLevel}
+              inputValue={inputValue}
+              setInputValue={setInputValue}
             />
           ) : null}
           {showResultsScreen ? (

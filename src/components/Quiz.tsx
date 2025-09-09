@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import "../App.css";
 import { Difficulty } from "../types/Question";
 
@@ -10,6 +10,8 @@ interface IProps {
   setSelectedOption: (arg0: number | null) => void;
   nextQuestion: () => void;
   difficultyLevel: Difficulty | null;
+  inputValue: string;
+  setInputValue: (arg0: string) => void;
 }
 
 const Quiz: FC<IProps> = ({
@@ -20,17 +22,34 @@ const Quiz: FC<IProps> = ({
   setSelectedOption,
   nextQuestion,
   difficultyLevel,
+  inputValue,
+  setInputValue,
 }) => {
   const options = questionData?.options;
   const pokemonCry = questionData?.cry;
   const [answer, setAnswer] = useState("");
   const multipleChoiceDifficulties = [Difficulty.Easy, Difficulty.Hard];
-  // const InputTextDifficulties = [Difficulty.Mediun];
+  const InputTextDifficulties = [Difficulty.Mediun];
+
+  useEffect(() => {
+    if (inputValue) {
+      setNextButtonDisabled(false);
+    }
+  }, [inputValue, setNextButtonDisabled]);
 
   const handleClick = (option: string, index: number) => {
     setAnswer(option);
     setNextButtonDisabled(false);
     setSelectedOption(index);
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleNextClick = () => {
+    nextQuestion();
+    setInputValue("");
   };
 
   if (!difficultyLevel) {
@@ -71,10 +90,19 @@ const Quiz: FC<IProps> = ({
           })}
         </div>
       ) : null}
+      {InputTextDifficulties.includes(difficultyLevel) ? (
+        <input
+          type="text"
+          name="pokemonInput"
+          value={inputValue}
+          onChange={handleChange}
+        />
+      ) : null}
       <button
+        type="submit"
         id="next-btn"
         disabled={nextButtonDisabled}
-        onClick={nextQuestion}>
+        onClick={handleNextClick}>
         Next
       </button>
     </div>
