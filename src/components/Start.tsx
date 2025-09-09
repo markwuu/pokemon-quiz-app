@@ -21,7 +21,7 @@ const Start: FC<IProps> = ({
     Difficulty.Easy,
     Difficulty.Mediun,
     Difficulty.Hard,
-    Difficulty.Impossible,
+    // Difficulty.Impossible,
   ];
 
   const handleClick = (option: Difficulty, index: number) => {
