@@ -1,8 +1,9 @@
-/* style.css */
+@import "tailwindcss";
+
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
-  background: black;
+  /* background: conic-gradient(from 0deg at top left, #ffecec, #0004ff); */
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -12,10 +13,14 @@ body {
 .container {
   max-width: 450px;
   width: 450px;
-  background: #2f32ab;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(20, 0, 0, 0.1);
+  background: white;
+  background: white;
+  border: 1px solid #e6dce1;
+  min-height: 83vh;
+  min-width: 60vw;
 }
 
 .screen {
