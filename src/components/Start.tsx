@@ -1,5 +1,4 @@
 import { FC } from "react";
-import "../App.css";
 import { Difficulty } from "../types/Question";
 
 interface IProps {
@@ -32,6 +31,7 @@ const Start: FC<IProps> = ({
     <>
       <div className={`screen`}>
         <h1>Test your Pokemon knowledge!</h1>
+        {/* <h1 className="text-3xl font-bold underline">Hello world!</h1> */}
         <button
           onClick={startQuiz}
           id="start-btn"

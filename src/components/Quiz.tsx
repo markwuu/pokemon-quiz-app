@@ -1,5 +1,4 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import "../App.css";
 import { Difficulty } from "../types/Question";
 
 interface IProps {
