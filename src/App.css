@@ -32,11 +32,6 @@ body {
 .screen > h1 {
   font-size: 30px;
   padding-bottom: 20px;
-  color: white;
-}
-
-.screen > h2 {
-  color: white;
 }
 
 .screen > p {
