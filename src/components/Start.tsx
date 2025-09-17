@@ -29,33 +29,39 @@ const Start: FC<IProps> = ({
 
   return (
     <>
-      <div className={`screen`}>
-        <h1>Test your Pokemon knowledge!</h1>
-        <button
-          onClick={startQuiz}
-          id="start-btn"
-          disabled={startButtonDisabled}>
-          Start Quiz
-        </button>
-      </div>
-      <div id="difficulty-container" className={`screen`}>
-        {difficultyLevels.map((difficulty, index) => {
-          let isDisabled = difficulty === Difficulty.Impossible;
-          let className =
-            difficultyLevel === difficulty
-              ? "difficulty-btn selected"
-              : "difficulty-btn";
+      <div className="screen">
+        <div className="hero">
+          <h1>THE POKEMON ACADEMY</h1>
+          <h2>
+            Test Your Knowledge by answering questions about your favorite
+            pokemon. Unlock the next difficulty by achieving a perfect score.
+          </h2>
+        </div>
 
-          return (
-            <button
-              onClick={() => handleClick(difficulty, index)}
-              key={index}
-              disabled={isDisabled}
-              className={className}>
-              {difficulty}
-            </button>
-          );
-        })}
+        <div id="difficulty-container" className={`screen`}>
+          {difficultyLevels.map((difficulty, index) => {
+            let isDisabled = difficulty === Difficulty.Impossible;
+            let className =
+              difficultyLevel === difficulty
+                ? "difficulty-btn selected"
+                : "difficulty-btn";
+            return (
+              <button
+                onClick={() => handleClick(difficulty, index)}
+                key={index}
+                disabled={isDisabled}
+                className={className}>
+                {difficulty}
+              </button>
+            );
+          })}
+          <button
+            onClick={startQuiz}
+            id="start-btn"
+            disabled={startButtonDisabled}>
+            Start Quiz
+          </button>
+        </div>
       </div>
     </>
   );

@@ -2,52 +2,51 @@
 
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  /* background: conic-gradient(from 0deg at top left, #ffecec, #0004ff); */
+  font-family: monospace;
+  background: hsl(0, 0%, 0%);
   display: flex;
   height: 100vh;
   justify-content: center;
   align-items: center;
 }
 
+h1,
+h2 {
+  margin: 0;
+}
+
 .container {
-  max-width: 450px;
-  width: 450px;
-  padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(20, 0, 0, 0.1);
-  background: white;
-  background: white;
-  border: 1px solid #e6dce1;
-  min-height: 83vh;
-  min-width: 60vw;
+  /* border: 2.25px solid #e6dce1; */
+  color: white;
+  width: 750px;
 }
 
 .screen {
   display: flex;
-  flex-direction: column;
-  gap: 0px 20px;
+  flex-direction: row;
+  gap: 30px 45px;
 }
 
-.screen > h1 {
-  font-size: 30px;
-  padding-bottom: 20px;
+.hero {
+  flex: 1;
+  text-align: left;
 }
 
-.screen > p {
-  text-align: center;
-  font-size: 14px;
-  color: white;
+.hero > h1 {
+  font-family: Didot;
+  font-size: 40px;
 }
 
-h1,
-h2 {
-  margin: 0;
-  text-align: center;
+.hero > h2 {
+  font-size: 12px;
+  width: 265px;
+  line-height: 2em;
+  font-family: monospace;
 }
 
 button {
-  padding: 12px;
+  /* padding: 12px;
   font-size: 1rem;
   border: none;
   background: #29a52d;
@@ -55,22 +54,56 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s;
-  box-shadow: 0 7px #807c7c;
+  box-shadow: 0 7px #807c7c; */
+  /* border: 1px solid white; */
+  padding: 5px;
+  border-radius: 3px;
+  background: #231c1d;
+}
+
+#start-btn {
+  background: white;
+  border: 1px solid white;
+
+  color: black;
 }
 
 button:disabled {
-  background: #aaa;
-  cursor: not-allowed;
+  /* background: #aaa;
+  cursor: not-allowed; */
 }
 
 button:hover:not(:disabled) {
-  background: #7aa7cc;
+  /* background: #7aa7cc; */
 }
 
 button:active {
-  background-color: #3e8e41;
+  /* background-color: #3e8e41;
   box-shadow: 0 5px #666;
-  transform: translateY(4px);
+  transform: translateY(4px); */
+}
+
+#difficulty-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  /* border: 1px solid white; */
+  padding: 4px 0 0px 0;
+}
+
+.difficulty-btn {
+  /* background: #231c1d; */
+  border: 1px solid #231c1d;
+}
+
+.difficulty-btn.selected {
+  background: #030202;
+  border: 1px solid white;
+}
+
+.difficulty-btn:hover:not(:disabled) {
+  background: #030202;
+  border: 1px solid white;
 }
 
 .options {
@@ -128,24 +161,4 @@ button:active {
 .pokemon-card-image {
   max-height: 150px;
   padding-top: 22px;
-}
-
-#difficulty-container {
-  display: flex;
-  padding-top: 20px;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.difficulty-btn {
-  flex: 1;
-  background: #ac1431;
-}
-
-.difficulty-btn.selected {
-  background: #1a6a1c;
-}
-
-.difficulty-btn:hover:not(:disabled) {
-  background: #1a6a1c;
 }
