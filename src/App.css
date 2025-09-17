@@ -3,11 +3,17 @@
 body {
   margin: 0;
   font-family: monospace;
-  background: hsl(0, 0%, 0%);
   display: flex;
   height: 100vh;
   justify-content: center;
   align-items: center;
+  background-image: url("https://images.unsplash.com/photo-1612988952181-c995680479a2?q=80&w=3085&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.92;
+  background-color: rgba(0, 0, 0, 0.2);
+  background-blend-mode: darken;
 }
 
 h1,
@@ -58,7 +64,7 @@ button {
   /* border: 1px solid white; */
   padding: 5px;
   border-radius: 3px;
-  background: #231c1d;
+  background: #1c1113;
 }
 
 #start-btn {
@@ -92,7 +98,6 @@ button:active {
 }
 
 .difficulty-btn {
-  /* background: #231c1d; */
   border: 1px solid #231c1d;
 }
 
