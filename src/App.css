@@ -23,7 +23,6 @@ h2 {
 
 .container {
   border-radius: 10px;
-  /* border: 2.25px solid #e6dce1; */
   color: white;
   width: 750px;
 }
@@ -70,8 +69,11 @@ button {
 #start-btn {
   background: white;
   border: 1px solid white;
-
   color: black;
+}
+
+#start-btn:disabled {
+  background: #b8afaf;
 }
 
 button:disabled {
@@ -166,4 +168,27 @@ button:active {
 .pokemon-card-image {
   max-height: 150px;
   padding-top: 22px;
+}
+
+@media screen and (max-width: 430px) {
+  .container {
+    width: auto;
+    margin: 0px 40px;
+  }
+
+  .screen {
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0px;
+  }
+
+  .hero {
+    text-align: center;
+  }
+
+  .hero > h2 {
+    width: auto;
+    padding: 0 13px;
+    font-size: 15px;
+  }
 }
