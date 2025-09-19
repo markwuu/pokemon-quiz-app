@@ -25,12 +25,19 @@ h2 {
   border-radius: 10px;
   color: white;
   width: 750px;
+  justify-content: center;
+  display: flex;
 }
 
 .screen {
   display: flex;
   flex-direction: row;
   gap: 30px 45px;
+}
+
+#quiz-screen {
+  flex-direction: column;
+  width: 375px;
 }
 
 .hero {
@@ -120,7 +127,6 @@ button:active {
 }
 
 .option-btn {
-  background: #b62a2a;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
