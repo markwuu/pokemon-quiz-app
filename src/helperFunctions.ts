@@ -1,13 +1,6 @@
 import { PokemonClient } from "pokenode-ts";
 import pokemonJSON from "./pokemon.json";
 
-// interface PokemonCries extends Pokemon {
-//   cries: {
-//     latest: string;
-//     legacy: string;
-//   };
-// }
-
 export const getRandomNonRepeatingIntegers = (
   min: number,
   max: number,
