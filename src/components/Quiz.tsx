@@ -60,17 +60,16 @@ const Quiz: FC<IProps> = ({
       <div className="question-header">
         <div id="progress">{progress}</div>
         <div className="pokemon-card">
-          <img
-            alt={questionData?.options[answer]}
-            src={questionData?.image}
-            className="pokemon-card-image"
-          />
+          {questionData?.image ? (
+            <img
+              alt={questionData?.options[answer]}
+              src={questionData?.image}
+              className="pokemon-card-image"
+            />
+          ) : null}
           {pokemonCry ? (
             <audio src={pokemonCry} autoPlay={true} controls={true}></audio>
           ) : null}
-          <div className="question-container">
-            <p>Who's that pokemon?</p>
-          </div>
         </div>
       </div>
       {multipleChoiceDifficulties.includes(difficultyLevel) ? (
