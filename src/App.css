@@ -71,6 +71,7 @@ button {
   padding: 5px;
   border-radius: 3px;
   background: #1c1113;
+  border: 1px solid #231c1d;
 }
 
 #start-btn {
@@ -90,6 +91,8 @@ button:disabled {
 
 button:hover:not(:disabled) {
   /* background: #7aa7cc; */
+  background: #030202;
+  border: 1px solid white;
 }
 
 button:active {
@@ -102,8 +105,8 @@ button:active {
   display: flex;
   flex-direction: column;
   flex: 1;
-  /* border: 1px solid white; */
   padding: 4px 0 0px 0;
+  justify-content: center;
 }
 
 .difficulty-btn {
@@ -174,6 +177,10 @@ button:active {
 .pokemon-card-image {
   max-height: 150px;
   padding-top: 22px;
+}
+
+#result-screen {
+  flex-direction: column;
 }
 
 @media screen and (max-width: 430px) {
