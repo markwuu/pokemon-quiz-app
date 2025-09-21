@@ -57,6 +57,11 @@ h2 {
   font-family: monospace;
 }
 
+input {
+  color: black;
+  padding: 5px;
+}
+
 button {
   /* padding: 12px;
   font-size: 1rem;
@@ -160,23 +165,20 @@ button:active {
 }
 
 .pokemon-card {
-  width: 100%;
   background-color: white;
-  box-shadow:
-    0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 25px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: anchor-center;
-  border: 5px solid #e04848;
+  border: 20px solid black;
+  padding: 15px;
 }
 
 .pokemon-card-image {
   max-height: 150px;
-  padding-top: 22px;
+  padding: 25px;
 }
 
 #result-screen {
