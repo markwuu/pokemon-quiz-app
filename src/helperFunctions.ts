@@ -30,12 +30,12 @@ export const getRandomInteger = (min: number, max: number) => {
 
 export const getPokemonNameById = async (pokemonNumber: number) => {
   const api = new PokemonClient();
-  const pokemon = await api
+  const pokemonName = await api
     .getPokemonSpeciesById(pokemonNumber)
-    .then((pokemon) => pokemon)
+    .then((pokemon) => pokemon.varieties[0].pokemon.name)
     .catch((error) => console.error(error));
 
-  return pokemon?.name;
+  return pokemonName;
 };
 
 export const getPokemonCryByName = async (pokemonName: string) => {
@@ -53,10 +53,10 @@ export const getPokemonCryByName = async (pokemonName: string) => {
 const createPokemonQuestion = async (difficulty: string) => {
   const randomNumbers = getRandomNonRepeatingIntegers(1, 1025, 4);
   const pokemonArray = [
-    pokemonJSON[randomNumbers[0] - 1].name,
-    pokemonJSON[randomNumbers[1] - 1].name,
-    pokemonJSON[randomNumbers[2] - 1].name,
-    pokemonJSON[randomNumbers[3] - 1].name,
+    pokemonJSON[randomNumbers[0] - 1].alternateForms[0],
+    pokemonJSON[randomNumbers[1] - 1].alternateForms[0],
+    pokemonJSON[randomNumbers[2] - 1].alternateForms[0],
+    pokemonJSON[randomNumbers[3] - 1].alternateForms[0],
   ];
   const answerIndex = getRandomInteger(0, 3);
   const pokemonNumber = randomNumbers[answerIndex];
