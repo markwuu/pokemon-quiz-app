@@ -1540,7 +1540,7 @@
     "number": 385
   },
   {
-    "name": "Deoxys",
+    "name": "Deoxys-normal",
     "number": 386
   },
   {
@@ -1648,7 +1648,7 @@
     "number": 412
   },
   {
-    "name": "Wormadam",
+    "name": "Wormadam-plant",
     "number": 413
   },
   {
@@ -1944,7 +1944,7 @@
     "number": 486
   },
   {
-    "name": "Giratina",
+    "name": "Giratina-altered",
     "number": 487
   },
   {
@@ -1964,7 +1964,7 @@
     "number": 491
   },
   {
-    "name": "Shaymin",
+    "name": "Shaymin-land",
     "number": 492
   },
   {
@@ -2196,7 +2196,7 @@
     "number": 549
   },
   {
-    "name": "Basculin",
+    "name": "Basculin-red-striped",
     "number": 550
   },
   {
@@ -2216,7 +2216,7 @@
     "number": 554
   },
   {
-    "name": "Darmanitan",
+    "name": "Darmanitan-standard",
     "number": 555
   },
   {
@@ -2560,11 +2560,11 @@
     "number": 640
   },
   {
-    "name": "Tornadus",
+    "name": "Tornadus-incarnate",
     "number": 641
   },
   {
-    "name": "Thundurus",
+    "name": "Thundurus-incarnate",
     "number": 642
   },
   {
@@ -2576,7 +2576,7 @@
     "number": 644
   },
   {
-    "name": "Landorus",
+    "name": "Landorus-incarnate",
     "number": 645
   },
   {
@@ -2584,11 +2584,11 @@
     "number": 646
   },
   {
-    "name": "Keldeo",
+    "name": "Keldeo-ordinary",
     "number": 647
   },
   {
-    "name": "Meloetta",
+    "name": "Meloetta-aria",
     "number": 648
   },
   {
@@ -2960,7 +2960,7 @@
     "number": 740
   },
   {
-    "name": "Oricorio",
+    "name": "Oricorio-baile",
     "number": 741
   },
   {
@@ -3604,7 +3604,7 @@
     "number": 901
   },
   {
-    "name": "Basculegion",
+    "name": "Basculegion-female",
     "number": 902
   },
   {
@@ -3616,7 +3616,7 @@
     "number": 904
   },
   {
-    "name": "Enamorus",
+    "name": "Enamorus-incarnate",
     "number": 905
   },
   {
@@ -3932,51 +3932,51 @@
     "number": 983
   },
   {
-    "name": "Great Tusk",
+    "name": "Great-Tusk",
     "number": 984
   },
   {
-    "name": "Scream Tail",
+    "name": "Scream-Tail",
     "number": 985
   },
   {
-    "name": "Brute Bonnet",
+    "name": "Brute-Bonnet",
     "number": 986
   },
   {
-    "name": "Flutter Mane",
+    "name": "Flutter-Mane",
     "number": 987
   },
   {
-    "name": "Slither Wing",
+    "name": "Slither-Wing",
     "number": 988
   },
   {
-    "name": "Sandy Shocks",
+    "name": "Sandy-Shocks",
     "number": 989
   },
   {
-    "name": "Iron Treads",
+    "name": "Iron-Treads",
     "number": 990
   },
   {
-    "name": "Iron Bundle",
+    "name": "Iron-Bundle",
     "number": 991
   },
   {
-    "name": "Iron Hands",
+    "name": "Iron-Hands",
     "number": 992
   },
   {
-    "name": "Iron Jugulis",
+    "name": "Iron-Jugulis",
     "number": 993
   },
   {
-    "name": "Iron Moth",
+    "name": "Iron-Moth",
     "number": 994
   },
   {
-    "name": "Iron Thorns",
+    "name": "Iron-Thorns",
     "number": 995
   },
   {
@@ -4016,11 +4016,11 @@
     "number": 1004
   },
   {
-    "name": "Roaring Moon",
+    "name": "Roaring-Moon",
     "number": 1005
   },
   {
-    "name": "Iron Valiant",
+    "name": "Iron-Valiant",
     "number": 1006
   },
   {
@@ -4032,11 +4032,11 @@
     "number": 1008
   },
   {
-    "name": "Walking Wake",
+    "name": "Walking-Wake",
     "number": 1009
   },
   {
-    "name": "Iron Leaves",
+    "name": "Iron-Leaves",
     "number": 1010
   },
   {
@@ -4076,19 +4076,19 @@
     "number": 1019
   },
   {
-    "name": "Gouging Fire",
+    "name": "Gouging-Fire",
     "number": 1020
   },
   {
-    "name": "Raging Bolt",
+    "name": "Raging-Bolt",
     "number": 1021
   },
   {
-    "name": "Iron Boulder",
+    "name": "Iron-Boulder",
     "number": 1022
   },
   {
-    "name": "Iron Crown",
+    "name": "Iron-Crown",
     "number": 1023
   },
   {
