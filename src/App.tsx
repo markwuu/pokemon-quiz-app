@@ -151,6 +151,14 @@ const App: FC = () => {
       }
     } else if ([Difficulty.Medium].includes(difficultyLevel)) {
       if (inputValue === questionData?.name) {
+        setAnswers((answers: any) => {
+          return answers.map((obj: any, index: number) => {
+            return {
+              answer: obj.answer,
+              correct: currentQuestion === index + 1 ? true : obj.correct,
+            };
+          });
+        });
         setScore(score + 1);
       }
     }
