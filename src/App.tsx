@@ -26,13 +26,7 @@ const App: FC = () => {
   const [inputValue, setInputValue] = useState("");
   const [answers, setAnswers] = useState<any>([]);
 
-  useEffect(() => {
-    if (difficultyLevel !== null && quizDataLoaded) {
-      setStartButtonDisabled(false);
-    }
-  }, [difficultyLevel, quizDataLoaded]);
-
-  let finalScore = `${score} out of ${questions.length}`;
+  const finalScore = `${score} out of ${questions.length}`;
   const perfectScore = score === questions.length;
 
   const fetchPokemonQuestions = useCallback(async (difficulty: string) => {
@@ -57,9 +51,13 @@ const App: FC = () => {
   }, []);
 
   useEffect(() => {
-    if (difficultyLevel) {
-      fetchPokemonQuestions(difficultyLevel);
+    if (difficultyLevel !== null && quizDataLoaded) {
+      setStartButtonDisabled(false);
     }
+  }, [difficultyLevel, quizDataLoaded]);
+
+  useEffect(() => {
+    if (difficultyLevel) fetchPokemonQuestions(difficultyLevel);
   }, [difficultyLevel, fetchPokemonQuestions]);
 
   const showQuiz = () => {
@@ -146,7 +144,6 @@ const App: FC = () => {
         <div className="container">
           {showStartScreen ? (
             <Start
-              quizDataLoaded={quizDataLoaded}
               startQuiz={startQuiz}
               difficultyLevel={difficultyLevel}
               setDifficultyLevel={setDifficultyLevel}
