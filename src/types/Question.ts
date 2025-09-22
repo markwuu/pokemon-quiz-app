@@ -6,10 +6,3 @@ export interface Question {
   image: string | undefined;
   name: string;
 }
-
-export enum Difficulty {
-  Easy = "Easy",
-  Mediun = "Medium",
-  Hard = "Hard",
-  Impossible = "Impossible",
-}

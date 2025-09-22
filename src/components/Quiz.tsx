@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import { Difficulty } from "../types/Question";
+import { Difficulty } from "../types/Difficulty";
 
 interface IProps {
   setNextButtonDisabled: (arg0: boolean) => void;
