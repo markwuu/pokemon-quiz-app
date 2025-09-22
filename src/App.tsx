@@ -71,7 +71,7 @@ const App: FC = () => {
         JSON.stringify(pokemonQuizDifficulty)
       );
     }
-  }, []);
+  }, [difficultyLevel]);
 
   useEffect(() => {
     if (difficultyLevel !== null && quizDataLoaded) {
@@ -82,6 +82,24 @@ const App: FC = () => {
   useEffect(() => {
     if (difficultyLevel) fetchPokemonQuestions(difficultyLevel);
   }, [difficultyLevel, fetchPokemonQuestions]);
+
+  useEffect(() => {
+    const updateDifficultySetting = () => {
+      if (difficultyLevel === Difficulty.Easy && perfectScore) {
+        localStorage.setItem(
+          "pokemonQuizDifficulty",
+          JSON.stringify({ mediumDisabled: false, hardDisabled: true })
+        );
+      } else if (difficultyLevel === Difficulty.Medium && perfectScore) {
+        localStorage.setItem(
+          "pokemonQuizDifficulty",
+          JSON.stringify({ mediumDisabled: false, hardDisabled: false })
+        );
+      }
+    };
+    if (questions.length > 0 && score === questions.length)
+      updateDifficultySetting();
+  }, [difficultyLevel, perfectScore, questions.length, score]);
 
   const showQuiz = () => {
     setShowQuizScreen(true);
@@ -131,7 +149,7 @@ const App: FC = () => {
           });
         });
       }
-    } else if ([Difficulty.Mediun].includes(difficultyLevel)) {
+    } else if ([Difficulty.Medium].includes(difficultyLevel)) {
       if (inputValue === questionData?.name) {
         setScore(score + 1);
       }
