@@ -95,6 +95,7 @@ const Quiz: FC<IProps> = ({
           value={inputValue}
           onChange={handleChange}
           autoComplete="off"
+          placeholder="Type your answer here..."
         />
       ) : null}
       <button
