@@ -41,6 +41,7 @@ audio {
   display: flex;
   flex-direction: row;
   gap: 30px;
+  padding: 0 6px;
 }
 
 .screen > h1 {
@@ -64,11 +65,13 @@ audio {
 .hero > h1 {
   font-family: Didot;
   font-size: 40px;
+  line-height: 40px;
+  padding-bottom: 18px;
 }
 
 .hero > h2 {
   font-size: 12px;
-  width: 265px;
+  width: 244px;
   line-height: 2em;
   font-family: monospace;
 }
@@ -207,16 +210,71 @@ button:active {
   border-radius: 5px;
   width: 100%;
   justify-content: space-between;
-  padding-bottom: 23px;
+  margin-bottom: 23px;
 }
 
-@media screen and (max-width: 430px) {
+/* .glow {
+  background: #12151d;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 8px 8px 9px #090a0e;
+  padding: 10px 11px;
+}
+
+.glow:hover {
+  box-shadow: none;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.glow:hover:after,
+.glow:hover:before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(
+    from var(--angle),
+    #ff4545,
+    #00ff99,
+    #006aff,
+    #ff0095,
+    #ff4545
+  );
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 3px;
+  border-radius: 10px;
+  animation: 3s spin linear infinite;
+}
+
+.glow::before {
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+} */
+
+@media screen and (max-width: 590px) {
   body {
     background-color: rgba(0, 0, 0, 0.88);
   }
   .container {
     width: auto;
-    margin: 0px 40px;
+    margin: 0px 30px;
   }
 
   .screen {
@@ -231,8 +289,8 @@ button:active {
 
   .hero > h2 {
     width: auto;
-    padding: 0 13px;
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 2em;
   }
 
   #quiz-screen {
@@ -248,5 +306,6 @@ button:active {
 
   .badge-container {
     width: 80vw;
+    margin-bottom: 20px;
   }
 }
