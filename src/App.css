@@ -21,6 +21,14 @@ h2 {
   margin: 0;
 }
 
+audio {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  background-color: #ecf1f6;
+  padding: 9px;
+}
+
 .container {
   border-radius: 10px;
   color: white;
