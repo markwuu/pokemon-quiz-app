@@ -32,12 +32,13 @@ h2 {
 .screen {
   display: flex;
   flex-direction: row;
-  gap: 30px 45px;
+  gap: 30px;
 }
 
 #quiz-screen {
   flex-direction: column;
   width: 340px;
+  gap: 8px 0px;
 }
 
 .hero {
@@ -66,23 +67,30 @@ button {
   padding: 5px;
   border-radius: 3px;
   background: #1c1113;
-  border: 1px solid #231c1d;
+  border: 1px solid #1c1113;
 }
 
 .next-btn {
   background: white;
-  border: 1px solid white;
+  border: 1px solid #807a7a;
   color: black;
   margin-top: 20px;
+  opacity: 0.8;
 }
 
-.next-btn:disabled {
-  background: #b8afaf;
+.next-btn:hover:not(:disabled) {
+  /* /* background: #030202; */
+  border: 1px solid #d3cbcb;
+  opacity: 0.95;
 }
 
 button:disabled {
-  /* background: #aaa;
-  cursor: not-allowed; */
+  border: 1px solid #382125;
+  cursor: not-allowed;
+  background: #918e8e;
+  color: #382125;
+  background-color: transparent;
+  opacity: 0.85;
 }
 
 button:hover:not(:disabled) {
@@ -104,10 +112,6 @@ button:active {
   justify-content: center;
 }
 
-.difficulty-btn {
-  border: 1px solid #231c1d;
-}
-
 .difficulty-btn.selected {
   background: #030202;
   border: 1px solid white;
@@ -115,7 +119,6 @@ button:active {
 
 .difficulty-btn:hover:not(:disabled) {
   background: #030202;
-  border: 1px solid white;
 }
 
 .options {
@@ -125,18 +128,20 @@ button:active {
 }
 
 .option-btn {
-  padding: 10px;
+  padding: 8px 0;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s;
+  letter-spacing: 3px;
 }
 
 .option-btn:hover {
-  background: #7aa7cc;
+  background: #030202;
+  opacity: 0.95;
 }
 
 .option-btn.selected {
-  background: #7aa7cc;
+  background: #030202;
+  border: 1px solid white;
 }
 
 #progress {
@@ -169,7 +174,7 @@ button:active {
 
 #result-screen {
   flex-direction: column;
-  width: 340px;
+  width: 288px;
 }
 
 @media screen and (max-width: 430px) {
