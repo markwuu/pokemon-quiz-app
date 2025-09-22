@@ -37,7 +37,7 @@ h2 {
 
 #quiz-screen {
   flex-direction: column;
-  width: 375px;
+  width: 340px;
 }
 
 .hero {
@@ -63,29 +63,20 @@ input {
 }
 
 button {
-  /* padding: 12px;
-  font-size: 1rem;
-  border: none;
-  background: #29a52d;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-  box-shadow: 0 7px #807c7c; */
-  /* border: 1px solid white; */
   padding: 5px;
   border-radius: 3px;
   background: #1c1113;
   border: 1px solid #231c1d;
 }
 
-#start-btn {
+.next-btn {
   background: white;
   border: 1px solid white;
   color: black;
+  margin-top: 20px;
 }
 
-#start-btn:disabled {
+.next-btn:disabled {
   background: #b8afaf;
 }
 
@@ -95,9 +86,8 @@ button:disabled {
 }
 
 button:hover:not(:disabled) {
-  /* background: #7aa7cc; */
-  background: #030202;
-  border: 1px solid white;
+  /* background: #030202;
+  border: 1px solid white; */
 }
 
 button:active {
@@ -149,14 +139,10 @@ button:active {
   background: #7aa7cc;
 }
 
-#next-btn {
-  margin-top: 20px;
-}
-
 #progress {
   text-align: right;
   font-size: 0.9rem;
-  color: #666;
+  color: white;
 }
 
 .question-container > p {
@@ -178,11 +164,12 @@ button:active {
 
 .pokemon-card-image {
   max-height: 150px;
-  padding: 25px;
+  padding: 5px;
 }
 
 #result-screen {
   flex-direction: column;
+  width: 340px;
 }
 
 @media screen and (max-width: 430px) {
@@ -209,5 +196,8 @@ button:active {
 
   #quiz-screen {
     width: 250px;
+  }
+  .pokemon-card-image {
+    padding: 7px 0px;
   }
 }

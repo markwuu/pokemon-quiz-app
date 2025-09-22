@@ -98,7 +98,7 @@ const Quiz: FC<IProps> = ({
       ) : null}
       <button
         type="submit"
-        id="next-btn"
+        className="next-btn"
         disabled={nextButtonDisabled}
         onClick={handleNextClick}>
         Next

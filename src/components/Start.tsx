@@ -57,7 +57,7 @@ const Start: FC<IProps> = ({
           })}
           <button
             onClick={startQuiz}
-            id="start-btn"
+            className="next-btn"
             disabled={startButtonDisabled}>
             Start Quiz
           </button>
