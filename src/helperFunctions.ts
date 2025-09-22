@@ -77,6 +77,14 @@ const createPokemonQuestion = async (difficulty: string) => {
     pokemonName = await getPokemonNameById(pokemonNumber);
   }
 
+  if (pokemonName === "maushold-family-of-four") {
+    pokemonName = "maushold-family4";
+  } else if (pokemonName === "morpeko") {
+    pokemonName = "morpeko-full-belly";
+  } else if (pokemonName === "mimikyu-disguised") {
+    pokemonName = "mimikyu";
+  }
+
   const pokemonQuestion = {
     question: "Who's that pokemon?",
     image: pokemonName
