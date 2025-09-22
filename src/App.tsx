@@ -24,6 +24,7 @@ const App: FC = () => {
   );
   const [startButtonDisabled, setStartButtonDisabled] = useState<boolean>(true);
   const [inputValue, setInputValue] = useState("");
+  const [answers, setAnswers] = useState<any>([]);
 
   useEffect(() => {
     if (difficultyLevel !== null && quizDataLoaded) {
@@ -39,6 +40,13 @@ const App: FC = () => {
       toast.loading("Loading quiz data...");
       const pokemonQuestions = await createPokemonQuestionArray(5, difficulty);
       const result = await pokemonQuestions;
+      const answerArray = result.map((question) => {
+        return {
+          answer: question.options[question.answer],
+          correct: undefined,
+        };
+      });
+      setAnswers(answerArray);
       setQuestions(result);
       setQuizDataLoaded(true);
       toast.dismiss();
@@ -84,6 +92,23 @@ const App: FC = () => {
     if ([Difficulty.Easy, Difficulty.Hard].includes(difficultyLevel)) {
       if (selectedOption === questionData?.answer) {
         setScore(score + 1);
+        setAnswers((answers: any) => {
+          return answers.map((obj: any, index: number) => {
+            return {
+              answer: obj.answer,
+              correct: currentQuestion === index + 1 ? true : obj.correct,
+            };
+          });
+        });
+      } else {
+        setAnswers((answers: any) => {
+          return answers.map((obj: any, index: number) => {
+            return {
+              answer: obj.answer,
+              correct: currentQuestion === index + 1 ? false : obj.correct,
+            };
+          });
+        });
       }
     } else if ([Difficulty.Mediun].includes(difficultyLevel)) {
       if (inputValue === questionData?.name) {
@@ -146,6 +171,7 @@ const App: FC = () => {
               finalScore={finalScore}
               retartQuiz={retartQuiz}
               perfectScore={perfectScore}
+              answers={answers}
             />
           ) : null}
         </div>
