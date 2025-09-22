@@ -20,7 +20,7 @@ const Start: FC<IProps> = ({
 
   const difficultyLevels = [
     Difficulty.Easy,
-    Difficulty.Mediun,
+    Difficulty.Medium,
     Difficulty.Hard,
   ];
 
@@ -42,7 +42,7 @@ const Start: FC<IProps> = ({
         <div id="difficulty-container" className={`screen`}>
           {difficultyLevels.map((difficulty, index) => {
             let isDisabled;
-            if (difficulty === Difficulty.Mediun) isDisabled = mediumDisabled;
+            if (difficulty === Difficulty.Medium) isDisabled = mediumDisabled;
             else if (difficulty === Difficulty.Hard) isDisabled = hardDisabled;
 
             let className =

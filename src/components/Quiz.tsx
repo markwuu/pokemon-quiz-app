@@ -28,7 +28,7 @@ const Quiz: FC<IProps> = ({
   const pokemonCry = questionData?.cry;
   const [answer, setAnswer] = useState("");
   const multipleChoiceDifficulties = [Difficulty.Easy, Difficulty.Hard];
-  const InputTextDifficulties = [Difficulty.Mediun];
+  const InputTextDifficulties = [Difficulty.Medium];
 
   useEffect(() => {
     if (inputValue) {

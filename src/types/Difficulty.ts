@@ -10,7 +10,7 @@ export const defaultDifficultySetting = {
 
 export enum Difficulty {
   Easy = "Easy",
-  Mediun = "Medium",
+  Medium = "Medium",
   Hard = "Hard",
   Impossible = "Impossible",
 }
