@@ -44,7 +44,7 @@ const Start: FC<IProps> = ({
         </div>
         <div className="screen">
           <div className="hero">
-            <h1>THE POKEMON ACADEMY</h1>
+            <h1>POKEMON ACADEMY</h1>
             <h2>
               Test Your Knowledge by answering questions about your favorite
               pokemon. Unlock the next difficulty by achieving a perfect score.
