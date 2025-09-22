@@ -88,18 +88,24 @@ const App: FC = () => {
       if (difficultyLevel === Difficulty.Easy && perfectScore) {
         localStorage.setItem(
           "pokemonQuizDifficulty",
-          JSON.stringify({ mediumDisabled: false, hardDisabled: true })
+          JSON.stringify({ ...difficultySetting, mediumDisabled: false })
         );
       } else if (difficultyLevel === Difficulty.Medium && perfectScore) {
         localStorage.setItem(
           "pokemonQuizDifficulty",
-          JSON.stringify({ mediumDisabled: false, hardDisabled: false })
+          JSON.stringify({ ...difficultySetting, hardDisabled: false })
         );
       }
     };
     if (questions.length > 0 && score === questions.length)
       updateDifficultySetting();
-  }, [difficultyLevel, perfectScore, questions.length, score]);
+  }, [
+    difficultyLevel,
+    difficultySetting,
+    perfectScore,
+    questions.length,
+    score,
+  ]);
 
   const showQuiz = () => {
     setShowQuizScreen(true);
