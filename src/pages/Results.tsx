@@ -21,7 +21,11 @@ const Results: FC<IProps> = ({
   return (
     <div id="result-screen" className={`screen`}>
       {perfectScore ? (
-        <h1>{`Congratulations! You're a Pokemon Master!`}</h1>
+        <h1>
+          {`Congratulations!`}
+          <br />
+          {`You're a Pokemon Master!`}
+        </h1>
       ) : null}
       <h2>Your Score: [{finalScore}]</h2>
       <div>

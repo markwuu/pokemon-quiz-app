@@ -1,8 +1,8 @@
 import { FC, useState, useEffect, useCallback } from "react";
 import "./App.css";
-import Start from "./components/Start";
-import Quiz from "./components/Quiz";
-import Results from "./components/Results";
+import Start from "./pages/Start";
+import Quiz from "./pages/Quiz";
+import Results from "./pages/Results";
 import { Question } from "./types/Question";
 import { createPokemonQuestionArray } from "./helperFunctions";
 import { ToastContainer, toast } from "react-toastify";
@@ -39,7 +39,7 @@ const App: FC = () => {
   const fetchPokemonQuestions = useCallback(async (difficulty: string) => {
     try {
       toast.loading("Loading quiz data...");
-      const pokemonQuestions = await createPokemonQuestionArray(5, difficulty);
+      const pokemonQuestions = await createPokemonQuestionArray(3, difficulty);
       const result = await pokemonQuestions;
       const answerArray = result.map((question) => {
         return {
