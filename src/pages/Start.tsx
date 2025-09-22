@@ -32,7 +32,7 @@ const Start: FC<IProps> = ({
   return (
     <>
       <div className="start-container">
-        <div className="badge-container">
+        <div className="badge-container glow">
           <Icon name="boulder-badge" size={size} />
           <Icon name="cascade-badge" size={size} />
           <Icon name="thunder-badge" size={size} />
@@ -46,8 +46,9 @@ const Start: FC<IProps> = ({
           <div className="hero">
             <h1>POKEMON ACADEMY</h1>
             <h2>
-              Test Your Knowledge by answering questions about your favorite
-              pokemon. Unlock the next difficulty by achieving a perfect score.
+              Test yourself by answering questions about your favorite pokemon.
+              Aim for a perfect score to unlock difficulties and earn gym
+              badges!
             </h2>
           </div>
           <div id="difficulty-container" className={`screen`}>
