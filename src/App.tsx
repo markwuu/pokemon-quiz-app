@@ -3,9 +3,14 @@ import "./App.css";
 import Start from "./components/Start";
 import Quiz from "./components/Quiz";
 import Results from "./components/Results";
-import { Difficulty, Question } from "./types/Question";
+import { Question } from "./types/Question";
 import { createPokemonQuestionArray } from "./helperFunctions";
 import { ToastContainer, toast } from "react-toastify";
+import {
+  defaultDifficultySetting,
+  Difficulty,
+  IDifficultySetting,
+} from "./types/Difficulty";
 
 const App: FC = () => {
   const [showStartScreen, setShowStartScreen] = useState(true);
@@ -22,6 +27,8 @@ const App: FC = () => {
   const [difficultyLevel, setDifficultyLevel] = useState<Difficulty | null>(
     null
   );
+  const [difficultySetting, setDifficultySetting] =
+    useState<IDifficultySetting>(defaultDifficultySetting);
   const [startButtonDisabled, setStartButtonDisabled] = useState<boolean>(true);
   const [inputValue, setInputValue] = useState("");
   const [answers, setAnswers] = useState<any>([]);
@@ -47,6 +54,22 @@ const App: FC = () => {
       toast.success("Quiz data loaded successfully!");
     } catch (err) {
       console.log("error fetching pokemon questions", err);
+    }
+  }, []);
+
+  useEffect(() => {
+    const pokemonQuizDifficulty = localStorage.getItem("pokemonQuizDifficulty");
+    if (pokemonQuizDifficulty) {
+      setDifficultySetting(JSON.parse(pokemonQuizDifficulty));
+    } else {
+      const pokemonQuizDifficulty = {
+        mediumDisabled: true,
+        hardDisabled: true,
+      };
+      localStorage.setItem(
+        "pokemonQuizDifficulty",
+        JSON.stringify(pokemonQuizDifficulty)
+      );
     }
   }, []);
 
@@ -148,6 +171,7 @@ const App: FC = () => {
               difficultyLevel={difficultyLevel}
               setDifficultyLevel={setDifficultyLevel}
               startButtonDisabled={startButtonDisabled}
+              difficultySetting={difficultySetting}
             />
           ) : null}
           {showQuizScreen ? (

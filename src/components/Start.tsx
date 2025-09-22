@@ -1,11 +1,12 @@
 import { FC } from "react";
-import { Difficulty } from "../types/Question";
+import { Difficulty, IDifficultySetting } from "../types/Difficulty";
 
 interface IProps {
   startQuiz: () => void;
   difficultyLevel: string | null;
   setDifficultyLevel: (arg0: Difficulty | null) => void;
   startButtonDisabled: boolean;
+  difficultySetting: IDifficultySetting;
 }
 
 const Start: FC<IProps> = ({
@@ -13,12 +14,14 @@ const Start: FC<IProps> = ({
   difficultyLevel,
   setDifficultyLevel,
   startButtonDisabled,
+  difficultySetting,
 }) => {
+  const { mediumDisabled, hardDisabled } = difficultySetting;
+
   const difficultyLevels = [
     Difficulty.Easy,
     Difficulty.Mediun,
     Difficulty.Hard,
-    // Difficulty.Impossible,
   ];
 
   const handleClick = (option: Difficulty, index: number) => {
@@ -38,7 +41,10 @@ const Start: FC<IProps> = ({
 
         <div id="difficulty-container" className={`screen`}>
           {difficultyLevels.map((difficulty, index) => {
-            let isDisabled = difficulty === Difficulty.Impossible;
+            let isDisabled;
+            if (difficulty === Difficulty.Mediun) isDisabled = mediumDisabled;
+            else if (difficulty === Difficulty.Hard) isDisabled = hardDisabled;
+
             let className =
               difficultyLevel === difficulty
                 ? "difficulty-btn selected"
