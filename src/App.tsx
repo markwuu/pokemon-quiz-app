@@ -156,7 +156,9 @@ const App: FC = () => {
         });
       }
     } else if ([Difficulty.Medium].includes(difficultyLevel)) {
-      if (inputValue === questionData?.name) {
+      const containsCorrectAnswer =
+        questionData?.alternateNames.includes(inputValue);
+      if (containsCorrectAnswer) {
         setAnswers((answers: any) => {
           return answers.map((obj: any, index: number) => {
             return {

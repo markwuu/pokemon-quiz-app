@@ -63,6 +63,14 @@ const createPokemonQuestion = async (difficulty: string) => {
   let pokemonName;
   let pokemonCry;
 
+  const pokemonNamesWithDuplicates = [
+    pokemonJSON[pokemonNumber - 1].name,
+    ...pokemonJSON[pokemonNumber - 1].alternateForms,
+  ];
+  const alternateNames = pokemonNamesWithDuplicates.filter(
+    (item, index) => pokemonNamesWithDuplicates.indexOf(item) === index
+  );
+
   if (difficulty === "Hard") {
     pokemonCry = await getPokemonCryByName(pokemonArray[answerIndex]);
   } else {
@@ -78,6 +86,8 @@ const createPokemonQuestion = async (difficulty: string) => {
     answer: answerIndex,
     cry: pokemonCry,
     name: pokemonArray[answerIndex],
+    id: pokemonNumber,
+    alternateNames,
   };
 
   return pokemonQuestion;

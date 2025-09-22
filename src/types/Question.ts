@@ -5,4 +5,6 @@ export interface Question {
   cry: string | undefined;
   image: string | undefined;
   name: string;
+  id: number;
+  alternateNames: string[];
 }
