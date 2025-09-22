@@ -12,7 +12,7 @@ body {
   background-position: center;
   background-size: cover;
   opacity: 0.92;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.8);
   background-blend-mode: darken;
 }
 
@@ -60,7 +60,8 @@ h2 {
 
 input {
   color: black;
-  padding: 5px;
+  padding: 10px;
+  border-radius: 3px;
 }
 
 button {
@@ -85,10 +86,10 @@ button {
 }
 
 button:disabled {
-  border: 1px solid #382125;
+  border: 1px solid #62474c;
   cursor: not-allowed;
   background: #918e8e;
-  color: #382125;
+  color: #62474c;
   background-color: transparent;
   opacity: 0.85;
 }
@@ -163,8 +164,10 @@ button:active {
   flex-direction: column;
   justify-content: center;
   align-items: anchor-center;
-  border: 20px solid black;
+  border: 17px solid #352727;
   padding: 15px;
+  opacity: 0.8;
+  box-shadow: 1px 1px 1px 1px #7c6f6f;
 }
 
 .pokemon-card-image {
@@ -204,5 +207,9 @@ button:active {
   }
   .pokemon-card-image {
     padding: 7px 0px;
+  }
+
+  .hero > h1 {
+    letter-spacing: 6px;
   }
 }
