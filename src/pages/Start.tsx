@@ -8,6 +8,7 @@ interface IProps {
   setDifficultyLevel: (arg0: Difficulty | null) => void;
   startButtonDisabled: boolean;
   difficultySetting: IDifficultySetting;
+  gymBadge: number;
 }
 
 const Start: FC<IProps> = ({
@@ -16,12 +17,23 @@ const Start: FC<IProps> = ({
   setDifficultyLevel,
   startButtonDisabled,
   difficultySetting,
+  gymBadge,
 }) => {
   const { mediumDisabled, hardDisabled } = difficultySetting;
   const difficultyLevels = [
     Difficulty.Easy,
     Difficulty.Medium,
     Difficulty.Hard,
+  ];
+  const badges: string[] = [
+    "boulder-badge",
+    "cascade-badge",
+    "thunder-badge",
+    "rainbow-badge",
+    "soul-badge",
+    "marsh-badge",
+    "volcano-badge",
+    "earth-badge",
   ];
   const size = 50;
 
@@ -33,14 +45,12 @@ const Start: FC<IProps> = ({
     <>
       <div className="start-container">
         <div className="badge-container glow">
-          <Icon name="boulder-badge" size={size} />
-          <Icon name="cascade-badge" size={size} />
-          <Icon name="thunder-badge" size={size} />
-          <Icon name="rainbow-badge" size={size} />
-          <Icon name="soul-badge" size={size} />
-          <Icon name="marsh-badge" size={size} />
-          <Icon name="volcano-badge" size={size} />
-          <Icon name="earth-badge" size={size} />
+          {badges.map((badge, index) => {
+            const gymBadgeNumber = index + 1;
+            const styles =
+              gymBadge >= gymBadgeNumber ? {} : { visibility: "hidden" };
+            return <Icon name={badge} size={size} key={index} style={styles} />;
+          })}
         </div>
         <div className="screen">
           <div className="hero">

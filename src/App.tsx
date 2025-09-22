@@ -32,6 +32,7 @@ const App: FC = () => {
   const [startButtonDisabled, setStartButtonDisabled] = useState<boolean>(true);
   const [inputValue, setInputValue] = useState("");
   const [answers, setAnswers] = useState<any>([]);
+  const [gymBadge, setGymBadge] = useState<number | undefined>(undefined);
 
   const finalScore = `${score} out of ${questions.length}`;
   const perfectScore = score === questions.length;
@@ -74,6 +75,17 @@ const App: FC = () => {
   }, [difficultyLevel]);
 
   useEffect(() => {
+    const pokemonGymBadge = localStorage.getItem("pokemonGymBadge");
+    if (pokemonGymBadge) {
+      setGymBadge(JSON.parse(pokemonGymBadge));
+    } else {
+      const pokemonGymBadge = 0;
+      localStorage.setItem("pokemonGymBadge", JSON.stringify(pokemonGymBadge));
+      setGymBadge(0);
+    }
+  }, []);
+
+  useEffect(() => {
     if (difficultyLevel !== null && quizDataLoaded) {
       setStartButtonDisabled(false);
     }
@@ -84,7 +96,7 @@ const App: FC = () => {
   }, [difficultyLevel, fetchPokemonQuestions]);
 
   useEffect(() => {
-    const updateDifficultySetting = () => {
+    const updateUserStorageSettings = () => {
       if (difficultyLevel === Difficulty.Easy && perfectScore) {
         localStorage.setItem(
           "pokemonQuizDifficulty",
@@ -95,13 +107,24 @@ const App: FC = () => {
           "pokemonQuizDifficulty",
           JSON.stringify({ ...difficultySetting, hardDisabled: false })
         );
+      } else if (
+        difficultyLevel === Difficulty.Hard &&
+        perfectScore &&
+        gymBadge !== undefined
+      ) {
+        localStorage.setItem(
+          "pokemonQuizDifficulty",
+          JSON.stringify({ mediumDisabled: true, hardDisabled: true })
+        );
+        localStorage.setItem("pokemonGymBadge", JSON.stringify(gymBadge + 1));
       }
     };
     if (questions.length > 0 && score === questions.length)
-      updateDifficultySetting();
+      updateUserStorageSettings();
   }, [
     difficultyLevel,
     difficultySetting,
+    gymBadge,
     perfectScore,
     questions.length,
     score,
@@ -181,6 +204,13 @@ const App: FC = () => {
   };
 
   const retartQuiz = () => {
+    if (
+      difficultyLevel === Difficulty.Hard &&
+      perfectScore &&
+      gymBadge !== undefined
+    ) {
+      setGymBadge(gymBadge + 1);
+    }
     setStartButtonDisabled(true);
     setDifficultyLevel(null);
     setShowQuizScreen(false);
@@ -199,13 +229,14 @@ const App: FC = () => {
     <div className="App">
       <header className="App-header">
         <div className="container">
-          {showStartScreen ? (
+          {showStartScreen && gymBadge !== undefined ? (
             <Start
               startQuiz={startQuiz}
               difficultyLevel={difficultyLevel}
               setDifficultyLevel={setDifficultyLevel}
               startButtonDisabled={startButtonDisabled}
               difficultySetting={difficultySetting}
+              gymBadge={gymBadge}
             />
           ) : null}
           {showQuizScreen ? (
