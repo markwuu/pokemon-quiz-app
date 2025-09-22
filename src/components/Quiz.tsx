@@ -94,6 +94,7 @@ const Quiz: FC<IProps> = ({
           name="pokemonInput"
           value={inputValue}
           onChange={handleChange}
+          autoComplete="off"
         />
       ) : null}
       <button
