@@ -3,7 +3,6 @@ import { Difficulty } from "../types/Question";
 
 interface IProps {
   startQuiz: () => void;
-  quizDataLoaded: boolean;
   difficultyLevel: string | null;
   setDifficultyLevel: (arg0: Difficulty | null) => void;
   startButtonDisabled: boolean;
@@ -11,7 +10,6 @@ interface IProps {
 
 const Start: FC<IProps> = ({
   startQuiz,
-  quizDataLoaded,
   difficultyLevel,
   setDifficultyLevel,
   startButtonDisabled,
