@@ -43,6 +43,11 @@ audio {
   gap: 30px;
 }
 
+.screen > h1 {
+  text-align: center;
+  font-size: 19px;
+}
+
 #quiz-screen {
   flex-direction: column;
   width: 340px;
@@ -188,6 +193,18 @@ button:active {
   width: 288px;
 }
 
+.start-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.badge-container {
+  display: flex;
+  border-radius: 5px;
+  width: 500px;
+}
+
 @media screen and (max-width: 430px) {
   body {
     background-color: rgba(0, 0, 0, 0.88);
@@ -222,5 +239,9 @@ button:active {
 
   .hero > h1 {
     letter-spacing: 6px;
+  }
+
+  .badge-container {
+    width: 80vw;
   }
 }
