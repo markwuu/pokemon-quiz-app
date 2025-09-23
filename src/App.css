@@ -144,7 +144,7 @@ button:active {
   display: flex;
   flex-direction: column;
   gap: 17px;
-  padding-bottom: 17px;
+  padding-bottom: 28px;
 }
 
 .option-btn {
@@ -271,10 +271,12 @@ button:active {
 @media screen and (max-width: 590px) {
   body {
     background-color: rgba(0, 0, 0, 0.88);
+    align-items: normal;
   }
   .container {
     width: auto;
-    margin: 0px 30px;
+    margin: 30px 0px 0px;
+    max-width: 330px;
   }
 
   .screen {
@@ -291,6 +293,7 @@ button:active {
     width: auto;
     font-size: 14px;
     line-height: 2em;
+    text-align: left;
   }
 
   #quiz-screen {
@@ -301,7 +304,7 @@ button:active {
   }
 
   .hero > h1 {
-    letter-spacing: 6px;
+    letter-spacing: 10px;
   }
 
   .badge-container {
