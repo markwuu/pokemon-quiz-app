@@ -51,7 +51,7 @@ export const getPokemonCryByName = async (pokemonName: string) => {
 };
 
 const createPokemonQuestion = async (difficulty: string) => {
-  const randomNumbers = getRandomNonRepeatingIntegers(1, 1025, 4);
+  const randomNumbers = getRandomNonRepeatingIntegers(1, 151, 4);
   const pokemonArray = [
     pokemonJSON[randomNumbers[0] - 1].alternateForms[0],
     pokemonJSON[randomNumbers[1] - 1].alternateForms[0],

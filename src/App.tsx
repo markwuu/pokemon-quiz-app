@@ -130,6 +130,8 @@ const App: FC = () => {
     score,
   ]);
 
+  //proba bly have to do a useeffect
+
   const showQuiz = () => {
     setShowQuizScreen(true);
   };
@@ -203,12 +205,15 @@ const App: FC = () => {
     }
   };
 
-  const retartQuiz = () => {
+  const restartQuiz = () => {
     if (
       difficultyLevel === Difficulty.Hard &&
       perfectScore &&
       gymBadge !== undefined
     ) {
+      // setGymBadge((prevGymBadge) =>
+      //   prevGymBadge ? prevGymBadge + 1 : gymBadge
+      // );
       setGymBadge(gymBadge + 1);
     }
     setStartButtonDisabled(true);
@@ -252,12 +257,14 @@ const App: FC = () => {
               setInputValue={setInputValue}
             />
           ) : null}
-          {showResultsScreen ? (
+          {showResultsScreen && gymBadge !== undefined ? (
             <Results
               finalScore={finalScore}
-              retartQuiz={retartQuiz}
+              restartQuiz={restartQuiz}
               perfectScore={perfectScore}
               answers={answers}
+              gymBadge={gymBadge}
+              difficultyLevel={difficultyLevel}
             />
           ) : null}
         </div>
