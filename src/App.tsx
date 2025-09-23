@@ -232,43 +232,42 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <div className="container">
-          {showStartScreen && gymBadge !== undefined ? (
-            <Start
-              startQuiz={startQuiz}
-              difficultyLevel={difficultyLevel}
-              setDifficultyLevel={setDifficultyLevel}
-              startButtonDisabled={startButtonDisabled}
-              difficultySetting={difficultySetting}
-              gymBadge={gymBadge}
-            />
-          ) : null}
-          {showQuizScreen ? (
-            <Quiz
-              setNextButtonDisabled={setNextButtonDisabled}
-              nextButtonDisabled={nextButtonDisabled}
-              questionData={questionData}
-              progress={progress}
-              setSelectedOption={setSelectedOption}
-              nextQuestion={nextQuestion}
-              difficultyLevel={difficultyLevel}
-              inputValue={inputValue}
-              setInputValue={setInputValue}
-            />
-          ) : null}
-          {showResultsScreen && gymBadge !== undefined ? (
-            <Results
-              finalScore={finalScore}
-              restartQuiz={restartQuiz}
-              perfectScore={perfectScore}
-              answers={answers}
-              gymBadge={gymBadge}
-              difficultyLevel={difficultyLevel}
-            />
-          ) : null}
-        </div>
-      </header>
+      <div className="container">
+        {showStartScreen && gymBadge !== undefined ? (
+          <Start
+            startQuiz={startQuiz}
+            difficultyLevel={difficultyLevel}
+            setDifficultyLevel={setDifficultyLevel}
+            startButtonDisabled={startButtonDisabled}
+            difficultySetting={difficultySetting}
+            gymBadge={gymBadge}
+          />
+        ) : null}
+        {showQuizScreen ? (
+          <Quiz
+            setNextButtonDisabled={setNextButtonDisabled}
+            nextButtonDisabled={nextButtonDisabled}
+            questionData={questionData}
+            progress={progress}
+            setSelectedOption={setSelectedOption}
+            nextQuestion={nextQuestion}
+            difficultyLevel={difficultyLevel}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+          />
+        ) : null}
+        {showResultsScreen && gymBadge !== undefined ? (
+          <Results
+            finalScore={finalScore}
+            restartQuiz={restartQuiz}
+            perfectScore={perfectScore}
+            answers={answers}
+            gymBadge={gymBadge}
+            difficultyLevel={difficultyLevel}
+          />
+        ) : null}
+      </div>
+
       <ToastContainer position="bottom-center" />
     </div>
   );
