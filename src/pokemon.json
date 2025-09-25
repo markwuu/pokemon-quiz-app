@@ -165,7 +165,7 @@
   {
     "name": "nidoran-f",
     "id": 29,
-    "alternateForms": ["nidoran", "nidoran-f"]
+    "alternateForms": ["nidoran-f", "nidoran"]
   },
   {
     "name": "nidorina",
@@ -180,7 +180,7 @@
   {
     "name": "nidoran-m",
     "id": 32,
-    "alternateForms": ["nidoran", "nidoran-m"]
+    "alternateForms": ["nidoran-m", "nidoran"]
   },
   {
     "name": "nidorino",
