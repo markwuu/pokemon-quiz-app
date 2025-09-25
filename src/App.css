@@ -225,11 +225,9 @@ button:active {
   box-shadow: 1px 1px 1px 1px #7c6f6f;
   height: 225px;
   overflow: hidden;
-  padding: 5px;
 }
 
 .pokemon-card > img {
-  padding: 5px;
   max-width: 175px;
   object-fit: contain;
   width: 100%;
