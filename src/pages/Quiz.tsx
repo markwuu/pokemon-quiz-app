@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, useEffect, useRef, useState } from "react";
 import { Difficulty } from "../types/Difficulty";
 
 interface IProps {
@@ -29,6 +29,7 @@ const Quiz: FC<IProps> = ({
   const [answer, setAnswer] = useState("");
   const multipleChoiceDifficulties = [Difficulty.Easy, Difficulty.Hard];
   const InputTextDifficulties = [Difficulty.Medium];
+  const audioRef = useRef<any>(null);
 
   useEffect(() => {
     if (inputValue) {
@@ -51,6 +52,12 @@ const Quiz: FC<IProps> = ({
     setInputValue("");
   };
 
+  const playAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  };
+
   if (!difficultyLevel) {
     return <p>difficulty not set...</p>;
   }
@@ -71,7 +78,12 @@ const Quiz: FC<IProps> = ({
             />
           ) : null}
           {pokemonCry ? (
-            <audio src={pokemonCry} autoPlay={true} controls={true}></audio>
+            <>
+              <audio ref={audioRef} src={pokemonCry} autoPlay={true}></audio>
+              <figure>
+                <button onClick={playAudio} name="play"></button>
+              </figure>
+            </>
           ) : null}
         </div>
       </div>
