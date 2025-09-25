@@ -11,6 +11,7 @@ import {
   Difficulty,
   IDifficultySetting,
 } from "./types/Difficulty";
+import Icon from "./components/SVG";
 
 const App: FC = () => {
   const [showStartScreen, setShowStartScreen] = useState(true);
@@ -36,6 +37,17 @@ const App: FC = () => {
 
   const finalScore = `${score} out of ${questions.length}`;
   const perfectScore = score === questions.length;
+  const badges: string[] = [
+    "boulder-badge",
+    "cascade-badge",
+    "thunder-badge",
+    "rainbow-badge",
+    "soul-badge",
+    "marsh-badge",
+    "volcano-badge",
+    "earth-badge",
+  ];
+  const size = 50;
 
   const fetchPokemonQuestions = useCallback(async (difficulty: string) => {
     try {
@@ -230,9 +242,19 @@ const App: FC = () => {
     setQuizDataLoaded(false);
   };
 
+  if (gymBadge === undefined) return null;
+
   return (
     <div className="App">
       <div className="container">
+        <div className="badge-container glow">
+          {badges.map((badge, index) => {
+            const gymBadgeNumber = index + 1;
+            const styles =
+              gymBadge >= gymBadgeNumber ? {} : { visibility: "hidden" };
+            return <Icon name={badge} size={size} key={index} style={styles} />;
+          })}
+        </div>
         {showStartScreen && gymBadge !== undefined ? (
           <Start
             startQuiz={startQuiz}
@@ -240,7 +262,6 @@ const App: FC = () => {
             setDifficultyLevel={setDifficultyLevel}
             startButtonDisabled={startButtonDisabled}
             difficultySetting={difficultySetting}
-            gymBadge={gymBadge}
           />
         ) : null}
         {showQuizScreen ? (
@@ -267,7 +288,6 @@ const App: FC = () => {
           />
         ) : null}
       </div>
-
       <ToastContainer position="bottom-center" />
     </div>
   );

@@ -57,14 +57,13 @@ const Quiz: FC<IProps> = ({
 
   return (
     <div id="quiz-screen" className={`screen`}>
-      <div className="question-header">
+      <div>
         <div id="progress">{progress}</div>
         <div className="pokemon-card">
           {questionData?.image ? (
             <img
               alt={questionData?.options[answer]}
               src={questionData?.image}
-              className="pokemon-card-image"
             />
           ) : null}
           {pokemonCry ? (
