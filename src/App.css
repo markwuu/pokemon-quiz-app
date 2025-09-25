@@ -61,6 +61,7 @@ audio {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .congrats > h1 {
@@ -82,6 +83,18 @@ audio {
 #result-screen {
   flex-direction: column;
   width: 300px;
+  gap: 0px;
+}
+
+#result-screen > h1 {
+  font-size: 17px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+#result-screen > h2,
+p {
+  padding-bottom: 7px;
 }
 
 .hero {
@@ -325,7 +338,7 @@ button:active {
 
   #result-screen {
     position: absolute;
-    top: 33%;
+    top: 25%;
   }
 
   .hero {
