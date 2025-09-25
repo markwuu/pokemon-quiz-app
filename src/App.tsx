@@ -244,9 +244,6 @@ const App: FC = () => {
       perfectScore &&
       gymBadge !== undefined
     ) {
-      // setGymBadge((prevGymBadge) =>
-      //   prevGymBadge ? prevGymBadge + 1 : gymBadge
-      // );
       setGymBadge(gymBadge + 1);
     }
     setStartButtonDisabled(true);
