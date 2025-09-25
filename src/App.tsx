@@ -4,7 +4,7 @@ import Start from "./pages/Start";
 import Quiz from "./pages/Quiz";
 import Results from "./pages/Results";
 import { Question } from "./types/Question";
-import { createPokemonQuestionArray } from "./helperFunctions";
+import { createPokemonQuestionArray, encodeHTML } from "./helperFunctions";
 import { ToastContainer, toast } from "react-toastify";
 import {
   defaultDifficultySetting,
@@ -213,8 +213,9 @@ const App: FC = () => {
         });
       }
     } else if ([Difficulty.Medium].includes(difficultyLevel)) {
-      const containsCorrectAnswer =
-        questionData?.alternateNames.includes(inputValue);
+      const containsCorrectAnswer = questionData?.alternateNames.includes(
+        encodeHTML(inputValue.toLowerCase())
+      );
       if (containsCorrectAnswer) {
         setAnswers((answers: any) => {
           return answers.map((obj: any, index: number) => {

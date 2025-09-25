@@ -113,3 +113,12 @@ export const createPokemonQuestionArray = async (
   }
   return pokemonQuestions;
 };
+
+export const encodeHTML = (s: string) => {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;"); // For single quotes
+};
