@@ -12,6 +12,7 @@ import {
   IDifficultySetting,
 } from "./types/Difficulty";
 import Icon from "./components/SVG";
+import { badges } from "./types/Pokemon";
 
 const App: FC = () => {
   const [showStartScreen, setShowStartScreen] = useState(true);
@@ -37,16 +38,6 @@ const App: FC = () => {
 
   const finalScore = `${score} out of ${questions.length}`;
   const perfectScore = score === questions.length;
-  const badges: string[] = [
-    "boulder-badge",
-    "cascade-badge",
-    "thunder-badge",
-    "rainbow-badge",
-    "soul-badge",
-    "marsh-badge",
-    "volcano-badge",
-    "earth-badge",
-  ];
   const size = 50;
 
   const fetchPokemonQuestions = useCallback(async (difficulty: string) => {
@@ -89,6 +80,13 @@ const App: FC = () => {
   }, [difficultyLevel]);
 
   useEffect(() => {
+    // console.log("start with 3 badges");
+    // localStorage.setItem("pokemonGymBadge", JSON.stringify(3));
+    // localStorage.setItem(
+    //   "pokemonQuizDifficulty",
+    //   JSON.stringify({ mediumDisabled: false, hardDisabled: false })
+    // );
+
     const pokemonGymBadge = localStorage.getItem("pokemonGymBadge");
     if (pokemonGymBadge) {
       setGymBadge(JSON.parse(pokemonGymBadge));
@@ -98,6 +96,7 @@ const App: FC = () => {
       setGymBadge(0);
     }
   }, []);
+  console.log(questionData?.name);
 
   useEffect(() => {
     if (difficultyLevel !== null && quizDataLoaded) {

@@ -57,7 +57,13 @@ audio {
   margin: auto;
 }
 
-.screen > h1 {
+.congrats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.congrats > h1 {
   text-align: center;
   font-size: 19px;
 }

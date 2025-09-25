@@ -1,5 +1,7 @@
 import { FC } from "react";
 import { Difficulty } from "../types/Difficulty";
+import Icon from "../components/SVG";
+import { badges } from "../types/Pokemon";
 
 interface IProps {
   finalScore: string;
@@ -23,11 +25,19 @@ const Results: FC<IProps> = ({
   gymBadge,
   difficultyLevel,
 }) => {
-  console.log("🚀 ~ Results ~ gymBadge:", gymBadge);
   return (
     <div id="result-screen" className={`screen`}>
       {perfectScore && difficultyLevel === Difficulty.Hard ? (
-        <h1>{`Congratulations! You earned a gym badge!`}</h1>
+        <div className="congrats">
+          {badges.map((badge, index) =>
+            gymBadge === index ? (
+              <>
+                <h1>{`Congratulations! You earned the ${badge.charAt(0).toUpperCase()}${badge.replace("-", " ").slice(1)}.`}</h1>
+                <Icon name={badge} size={50} key={index} style={{}} />
+              </>
+            ) : null
+          )}
+        </div>
       ) : null}
       {perfectScore && difficultyLevel !== Difficulty.Hard ? (
         <h1>{`Good job! You got all of them right.`}</h1>
