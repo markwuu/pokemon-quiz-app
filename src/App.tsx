@@ -64,7 +64,9 @@ const App: FC = () => {
       setQuestions(result);
       setQuizDataLoaded(true);
       toast.dismiss();
-      toast.success("Quiz data loaded successfully!");
+      toast.success("Quiz data loaded successfully!", {
+        autoClose: 500,
+      });
     } catch (err) {
       console.log("error fetching pokemon questions", err);
     }
