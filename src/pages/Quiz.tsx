@@ -55,8 +55,12 @@ const Quiz: FC<IProps> = ({
     return <p>difficulty not set...</p>;
   }
 
+  const addInputClass = InputTextDifficulties.includes(difficultyLevel)
+    ? "quiz-screen-input"
+    : null;
+
   return (
-    <div id="quiz-screen" className={`screen`}>
+    <div id="quiz-screen" className={`screen ${addInputClass}`}>
       <div>
         <div id="progress">{progress}</div>
         <div className="pokemon-card">

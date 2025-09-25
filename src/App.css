@@ -1,12 +1,24 @@
 @import "tailwindcss";
 
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
 body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
   font-family: monospace;
   display: flex;
   justify-content: center;
   align-items: center;
   background-image: url("https://images.unsplash.com/photo-1612988952181-c995680479a2?q=80&w=3085&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-position: center;
   background-size: cover;
   opacity: 0.92;
@@ -63,7 +75,7 @@ audio {
 
 #result-screen {
   flex-direction: column;
-  width: 288px;
+  width: 300px;
 }
 
 .hero {
@@ -92,6 +104,7 @@ input {
   padding: 10px;
   border-radius: 3px;
   margin-bottom: 17px;
+  font-size: 16px;
 }
 
 button {
@@ -273,18 +286,40 @@ button:active {
     align-items: normal;
   }
 
-  button {
+  button,
+  .next-btn,
+  .option-btn {
     padding: 12px;
   }
 
   .container {
-    margin-top: 0px;
+    height: auto;
+    width: 100vw;
   }
 
   .screen {
     display: flex;
     flex-direction: column;
     gap: 20px 0px;
+    margin: 0;
+  }
+
+  #start-screen {
+    flex-direction: column;
+    max-width: 300px;
+    width: 300px;
+    position: absolute;
+    top: 15%;
+  }
+
+  .quiz-screen-input {
+    position: absolute;
+    top: 25%;
+  }
+
+  #result-screen {
+    position: absolute;
+    top: 33%;
   }
 
   .hero {
@@ -299,8 +334,9 @@ button:active {
   }
 
   #quiz-screen {
-    width: 250px;
+    width: 300px;
   }
+
   .pokemon-card-image {
     padding: 7px 0px;
   }
@@ -310,8 +346,9 @@ button:active {
   }
 
   .badge-container {
-    width: 80vw;
     margin-bottom: 20px;
+    max-width: 300px;
+    width: 300px;
   }
 
   .pokemon-card {
