@@ -83,6 +83,8 @@ const createPokemonQuestion = async (difficulty: string) => {
     pokemonName = "morpeko-full-belly";
   } else if (pokemonName === "mimikyu-disguised") {
     pokemonName = "mimikyu";
+  } else if (pokemonName === "mr. mime") {
+    pokemonName = "mr-mime";
   }
 
   const pokemonQuestion = {
