@@ -214,7 +214,7 @@ const App: FC = () => {
       }
     } else if ([Difficulty.Medium].includes(difficultyLevel)) {
       const containsCorrectAnswer = questionData?.alternateNames.includes(
-        encodeHTML(inputValue.toLowerCase())
+        encodeHTML(inputValue.toLowerCase().trim())
       );
       if (containsCorrectAnswer) {
         setAnswers((answers: any) => {
