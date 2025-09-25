@@ -40,30 +40,48 @@ const App: FC = () => {
   const perfectScore = score === questions.length;
   const size = 50;
 
-  const fetchPokemonQuestions = useCallback(async (difficulty: string) => {
-    try {
-      toast.loading("Loading quiz data...");
-      const pokemonQuestions = await createPokemonQuestionArray(3, difficulty);
-      const result = await pokemonQuestions;
-      const answerArray = result.map((question) => {
-        return {
-          answer: question.options[question.answer],
-          correct: undefined,
-        };
-      });
-      setAnswers(answerArray);
-      setQuestions(result);
-      setQuizDataLoaded(true);
-      toast.dismiss();
-      toast.success("Quiz data loaded successfully!", {
-        autoClose: 500,
-      });
-    } catch (err) {
-      console.log("error fetching pokemon questions", err);
-    }
-  }, []);
+  // useEffect(() => {
+  //   // console.log("start with 3 badges");
+  //   // localStorage.setItem("pokemonGymBadge", JSON.stringify(3));
+  //   // localStorage.setItem(
+  //   //   "pokemonQuizDifficulty",
+  //   //   JSON.stringify({ mediumDisabled: false, hardDisabled: false })
+  //   // );
+  // }, []);
+  // console.log(questionData?.name);
+
+  const fetchPokemonQuestions = useCallback(
+    async (difficulty: string, gymBadge: number) => {
+      console.log("fetching");
+      try {
+        toast.loading("Loading quiz data...");
+        const pokemonQuestions = await createPokemonQuestionArray(
+          gymBadge + 1,
+          difficulty
+        );
+        const result = await pokemonQuestions;
+        const answerArray = result.map((question) => {
+          return {
+            answer: question.options[question.answer],
+            correct: undefined,
+          };
+        });
+        setAnswers(answerArray);
+        setQuestions(result);
+        setQuizDataLoaded(true);
+        toast.dismiss();
+        toast.success("Quiz data loaded successfully!", {
+          autoClose: 500,
+        });
+      } catch (err) {
+        console.log("error fetching pokemon questions", err);
+      }
+    },
+    []
+  );
 
   useEffect(() => {
+    //checks localstorage to set or retrieve user settings
     const pokemonQuizDifficulty = localStorage.getItem("pokemonQuizDifficulty");
     if (pokemonQuizDifficulty) {
       setDifficultySetting(JSON.parse(pokemonQuizDifficulty));
@@ -77,15 +95,6 @@ const App: FC = () => {
         JSON.stringify(pokemonQuizDifficulty)
       );
     }
-  }, [difficultyLevel]);
-
-  useEffect(() => {
-    // console.log("start with 3 badges");
-    // localStorage.setItem("pokemonGymBadge", JSON.stringify(3));
-    // localStorage.setItem(
-    //   "pokemonQuizDifficulty",
-    //   JSON.stringify({ mediumDisabled: false, hardDisabled: false })
-    // );
 
     const pokemonGymBadge = localStorage.getItem("pokemonGymBadge");
     if (pokemonGymBadge) {
@@ -95,20 +104,32 @@ const App: FC = () => {
       localStorage.setItem("pokemonGymBadge", JSON.stringify(pokemonGymBadge));
       setGymBadge(0);
     }
-  }, []);
-  console.log(questionData?.name);
+  }, [difficultyLevel, gymBadge]);
 
   useEffect(() => {
+    //keeps start button disabled before necessary values are loaded
     if (difficultyLevel !== null && quizDataLoaded) {
       setStartButtonDisabled(false);
     }
   }, [difficultyLevel, quizDataLoaded]);
 
   useEffect(() => {
-    if (difficultyLevel) fetchPokemonQuestions(difficultyLevel);
-  }, [difficultyLevel, fetchPokemonQuestions]);
+    //fetches questions
+    if (difficultyLevel && gymBadge !== undefined && gymBadge >= 0) {
+      fetchPokemonQuestions(difficultyLevel, gymBadge);
+    }
+    const pokemonGymBadge = localStorage.getItem("pokemonGymBadge");
+    if (pokemonGymBadge) {
+      setGymBadge(JSON.parse(pokemonGymBadge));
+    } else {
+      const pokemonGymBadge = 0;
+      localStorage.setItem("pokemonGymBadge", JSON.stringify(pokemonGymBadge));
+      setGymBadge(0);
+    }
+  }, [difficultyLevel, fetchPokemonQuestions, gymBadge]);
 
   useEffect(() => {
+    //updates user settings after quiz results
     const updateUserStorageSettings = () => {
       if (difficultyLevel === Difficulty.Easy && perfectScore) {
         localStorage.setItem(
@@ -142,8 +163,6 @@ const App: FC = () => {
     questions.length,
     score,
   ]);
-
-  //proba bly have to do a useeffect
 
   const showQuiz = () => {
     setShowQuizScreen(true);
