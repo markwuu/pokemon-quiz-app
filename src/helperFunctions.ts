@@ -38,16 +38,67 @@ export const getPokemonNameById = async (pokemonNumber: number) => {
   return pokemonName;
 };
 
-export const getPokemonCryByName = async (pokemonName: string) => {
+const versions = [
+  "red",
+  "blue",
+  "yellow",
+  "gold",
+  "silver",
+  "crystal",
+  "ruby",
+  "sapphire",
+  "emerald",
+  "firered",
+  "leafgreen",
+  "diamond",
+  "pearl",
+  "platinum",
+  "heartgold",
+  "soulsilver",
+  "black",
+  "black",
+  "white",
+  "white",
+  "black-2",
+  "white-2",
+  "x",
+  "y",
+  "omega-ruby",
+  "alpha-sapphire",
+  "sun",
+  "moon",
+  "ultra-sun",
+  "lets-go-pikachu",
+  "lets-go-eevee",
+  "sword",
+  "shield",
+  "legends-arceus",
+];
+
+export const getPokemonDescriptionByName = async (pokemonName: string) => {
   const api = new PokemonClient();
-  const pokemonCry = await api
-    .getPokemonByName(pokemonName)
+  const pokemonDescription = await api
+    .getPokemonSpeciesByName(pokemonName)
     .then((pokemon: any) => {
-      return pokemon?.cries?.latest;
+      const name = pokemon.name;
+      const regEx = new RegExp(name, "i");
+      let description;
+      const randomVersion = versions[getRandomInteger(0, 33)];
+      pokemon.flavor_text_entries.forEach((text: any) => {
+        if (
+          text.language.name === "en" &&
+          text.version.name === randomVersion
+        ) {
+          description = text.flavor_text
+            .replace(/[\n\f]/g, " ")
+            .replace(regEx, "*******");
+        }
+      });
+      return description;
     })
     .catch((error) => console.error(error));
 
-  return pokemonCry;
+  return pokemonDescription;
 };
 
 const createPokemonQuestion = async (difficulty: string) => {
@@ -61,7 +112,7 @@ const createPokemonQuestion = async (difficulty: string) => {
   const answerIndex = getRandomInteger(0, 3);
   const pokemonNumber = randomNumbers[answerIndex];
   let pokemonName;
-  let pokemonCry;
+  let pokemonDescription;
 
   const pokemonNamesWithDuplicates = [
     pokemonJSON[pokemonNumber - 1].name,
@@ -72,7 +123,9 @@ const createPokemonQuestion = async (difficulty: string) => {
   );
 
   if (difficulty === "Hard") {
-    pokemonCry = await getPokemonCryByName(pokemonArray[answerIndex]);
+    pokemonDescription = await getPokemonDescriptionByName(
+      pokemonArray[answerIndex]
+    );
   } else {
     pokemonName = await getPokemonNameById(pokemonNumber);
   }
@@ -94,10 +147,11 @@ const createPokemonQuestion = async (difficulty: string) => {
       : null,
     options: pokemonArray,
     answer: answerIndex,
-    cry: pokemonCry,
+    cry: "",
     name: pokemonArray[answerIndex],
     id: pokemonNumber,
     alternateNames,
+    description: pokemonDescription,
   };
 
   return pokemonQuestion;
