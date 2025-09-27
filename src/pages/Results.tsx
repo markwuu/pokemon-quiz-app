@@ -28,16 +28,16 @@ const Results: FC<IProps> = ({
   return (
     <div id="result-screen" className={`screen`}>
       {perfectScore && difficultyLevel === Difficulty.Hard ? (
-        <div className="congrats">
+        <>
           {badges.map((badge, index) =>
             gymBadge === index ? (
-              <>
+              <div className="congrats" key={index}>
                 <h1>{`Congratulations! You earned the ${badge.charAt(0).toUpperCase()}${badge.replace("-", " ").slice(1)}.`}</h1>
-                <Icon name={badge} size={95} key={index} style={{}} />
-              </>
+                <Icon name={badge} size={95} style={{}} />
+              </div>
             ) : null
           )}
-        </div>
+        </>
       ) : null}
       {perfectScore && difficultyLevel !== Difficulty.Hard ? (
         <h1>{`Wow! Perfect score!`}</h1>
