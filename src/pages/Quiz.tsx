@@ -26,6 +26,7 @@ const Quiz: FC<IProps> = ({
 }) => {
   const options = questionData?.options;
   const pokemonCry = questionData?.cry;
+  const pokemonDescription = questionData?.description;
   const [answer, setAnswer] = useState("");
   const multipleChoiceDifficulties = [Difficulty.Easy, Difficulty.Hard];
   const InputTextDifficulties = [Difficulty.Medium];
@@ -83,6 +84,13 @@ const Quiz: FC<IProps> = ({
               <figure>
                 <button onClick={playAudio} name="play"></button>
               </figure>
+            </>
+          ) : null}
+          {pokemonDescription ? (
+            <>
+              <p style={{ color: "black", padding: "0 20px" }}>
+                {pokemonDescription}
+              </p>
             </>
           ) : null}
         </div>
