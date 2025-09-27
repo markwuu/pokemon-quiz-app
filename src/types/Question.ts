@@ -7,4 +7,5 @@ export interface Question {
   name: string;
   id: number;
   alternateNames: string[];
+  description: string;
 }
