@@ -52,7 +52,6 @@ const App: FC = () => {
 
   const fetchPokemonQuestions = useCallback(
     async (difficulty: string, gymBadge: number) => {
-      console.log("fetching");
       try {
         toast.loading("Loading quiz data...");
         const pokemonQuestions = await createPokemonQuestionArray(
