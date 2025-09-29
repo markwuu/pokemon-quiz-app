@@ -154,17 +154,6 @@ button:disabled {
   opacity: 0.85;
 }
 
-button:hover:not(:disabled) {
-  /* background: #030202;
-  border: 1px solid white; */
-}
-
-button:active {
-  /* background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px); */
-}
-
 #difficulty-container {
   display: flex;
   flex-direction: column;
@@ -275,61 +264,6 @@ figure button[name="play"]::after {
   border-width: 20px 0 20px 30px;
   border-color: transparent transparent transparent white;
 }
-
-/* .glow {
-  background: #12151d;
-  border-radius: 5px;
-  position: relative;
-  cursor: pointer;
-  box-shadow: 8px 8px 9px #090a0e;
-  padding: 10px 11px;
-}
-
-.glow:hover {
-  box-shadow: none;
-}
-
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-.glow:hover:after,
-.glow:hover:before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background-image: conic-gradient(
-    from var(--angle),
-    #ff4545,
-    #00ff99,
-    #006aff,
-    #ff0095,
-    #ff4545
-  );
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  z-index: -1;
-  padding: 3px;
-  border-radius: 10px;
-  animation: 3s spin linear infinite;
-}
-
-.glow::before {
-  filter: blur(1.5rem);
-  opacity: 0.5;
-}
-@keyframes spin {
-  from {
-    --angle: 0deg;
-  }
-  to {
-    --angle: 360deg;
-  }
-} */
 
 @media screen and (max-width: 590px) {
   body {
