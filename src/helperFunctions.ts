@@ -38,43 +38,6 @@ export const getPokemonNameById = async (pokemonNumber: number) => {
   return pokemonName;
 };
 
-const versions = [
-  "red",
-  "blue",
-  "yellow",
-  "gold",
-  "silver",
-  "crystal",
-  "ruby",
-  "sapphire",
-  "emerald",
-  "firered",
-  "leafgreen",
-  "diamond",
-  "pearl",
-  "platinum",
-  "heartgold",
-  "soulsilver",
-  "black",
-  "black",
-  "white",
-  "white",
-  "black-2",
-  "white-2",
-  "x",
-  "y",
-  "omega-ruby",
-  "alpha-sapphire",
-  "sun",
-  "moon",
-  "ultra-sun",
-  "lets-go-pikachu",
-  "lets-go-eevee",
-  "sword",
-  "shield",
-  "legends-arceus",
-];
-
 export const getPokemonDescriptionByName = async (pokemonName: string) => {
   const api = new PokemonClient();
   const pokemonDescription = await api
@@ -82,19 +45,16 @@ export const getPokemonDescriptionByName = async (pokemonName: string) => {
     .then((pokemon: any) => {
       const name = pokemon.name;
       const regEx = new RegExp(name, "i");
-      let description;
-      const randomVersion = versions[getRandomInteger(0, 33)];
+      let descriptions: string[] = [];
       pokemon.flavor_text_entries.forEach((text: any) => {
-        if (
-          text.language.name === "en" &&
-          text.version.name === randomVersion
-        ) {
-          description = text.flavor_text
+        if (text.language.name === "en") {
+          let description = text.flavor_text
             .replace(/[\n\f]/g, " ")
             .replace(regEx, "*******");
+          descriptions.push(description);
         }
       });
-      return description;
+      return descriptions[getRandomInteger(0, descriptions.length - 1)];
     })
     .catch((error) => console.error(error));
 
