@@ -4,9 +4,7 @@ import Icon from "../components/SVG";
 import { badges } from "../types/Pokemon";
 
 interface IProps {
-  finalScore: string;
   restartQuiz: () => void;
-  perfectScore: boolean;
   answers: Answer[];
   gymBadge: number;
   difficultyLevel: string | null;
@@ -18,16 +16,25 @@ export interface Answer {
 }
 
 const Results: FC<IProps> = ({
-  finalScore,
   restartQuiz,
-  perfectScore,
   answers,
   gymBadge,
   difficultyLevel,
 }) => {
+  const imperfectScore = answers.some((answer) => answer.correct === false);
+  const finalScore = () => {
+    let numberOfCorrectAnswers = 0;
+    answers.forEach((answer) => {
+      if (answer.correct === true) {
+        numberOfCorrectAnswers++;
+      }
+    });
+    return `${numberOfCorrectAnswers} out of ${answers.length}`;
+  };
+
   return (
     <div id="result-screen" className={`screen`}>
-      {perfectScore && difficultyLevel === Difficulty.Hard ? (
+      {!imperfectScore && difficultyLevel === Difficulty.Hard ? (
         <>
           {badges.map((badge, index) =>
             gymBadge === index ? (
@@ -39,11 +46,11 @@ const Results: FC<IProps> = ({
           )}
         </>
       ) : null}
-      {perfectScore && difficultyLevel !== Difficulty.Hard ? (
+      {!imperfectScore && difficultyLevel !== Difficulty.Hard ? (
         <h1>{`Wow! Perfect score!`}</h1>
       ) : null}
-      {!perfectScore ? <h1>{`Oh! You almost had it ;)`}</h1> : null}
-      <h2>Your Score: [{finalScore}]</h2>
+      {imperfectScore ? <h1>{`Oh! You almost had it ;)`}</h1> : null}
+      <h2>Your Score: [{finalScore()}]</h2>
       {answers?.map(({ answer, correct }: Answer, index: number) => {
         return (
           <p key={index}>
