@@ -19,6 +19,7 @@ const App: FC = () => {
   const [showQuizScreen, setShowQuizScreen] = useState(false);
   const [quizDataLoaded, setQuizDataLoaded] = useState<boolean>(false);
   const [nextButtonDisabled, setNextButtonDisabled] = useState<boolean>(true);
+  const [prevButtonDisabled, setPrevButtonDisabled] = useState<boolean>(false);
   const [questionData, setQuestionData] = useState<Question>();
   const [progress, setProgress] = useState("");
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -41,12 +42,12 @@ const App: FC = () => {
   const size = 50;
 
   // useEffect(() => {
-  //   // console.log("start with 3 badges");
-  //   // localStorage.setItem("pokemonGymBadge", JSON.stringify(3));
-  //   // localStorage.setItem(
-  //   //   "pokemonQuizDifficulty",
-  //   //   JSON.stringify({ mediumDisabled: false, hardDisabled: false })
-  //   // );
+  //   console.log("start with 3 badges");
+  //   localStorage.setItem("pokemonGymBadge", JSON.stringify(8));
+  //   localStorage.setItem(
+  //     "pokemonQuizDifficulty",
+  //     JSON.stringify({ mediumDisabled: false, hardDisabled: false })
+  //   );
   // }, []);
   // console.log(questionData?.name);
 
@@ -189,6 +190,12 @@ const App: FC = () => {
   const nextQuestion = () => {
     if (!difficultyLevel) throw Error("Difficulty not set");
 
+    let questionsCopy = [...questions];
+    questionsCopy[currentQuestion - 1] = {
+      ...questionsCopy[currentQuestion - 1],
+      selectedAnswer: selectedOption,
+    };
+    setQuestions(questionsCopy);
     setNextButtonDisabled(true);
     if ([Difficulty.Easy, Difficulty.Hard].includes(difficultyLevel)) {
       if (selectedOption === questionData?.answer) {
@@ -234,6 +241,19 @@ const App: FC = () => {
       showQuestion();
     } else {
       showResult();
+    }
+  };
+
+  const prevQuestion = () => {
+    if (currentQuestion === 1) {
+      restartQuiz();
+    } else {
+      setNextButtonDisabled(false);
+      setCurrentQuestion(currentQuestion - 1);
+      const prevQuestion = questions[currentQuestion - 2];
+      setQuestionData(prevQuestion);
+      setProgress(`${currentQuestion - 1} / ${questions.length}`);
+      setCurrentQuestion(currentQuestion - 1);
     }
   };
 
@@ -285,13 +305,17 @@ const App: FC = () => {
           <Quiz
             setNextButtonDisabled={setNextButtonDisabled}
             nextButtonDisabled={nextButtonDisabled}
+            prevButtonDisabled={prevButtonDisabled}
             questionData={questionData}
             progress={progress}
             setSelectedOption={setSelectedOption}
+            prevQuestion={prevQuestion}
             nextQuestion={nextQuestion}
             difficultyLevel={difficultyLevel}
             inputValue={inputValue}
             setInputValue={setInputValue}
+            questions={questions}
+            currentQuestion={currentQuestion}
           />
         ) : null}
         {showResultsScreen && gymBadge !== undefined ? (
