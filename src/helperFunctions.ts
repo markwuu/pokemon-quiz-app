@@ -125,8 +125,13 @@ export const createPokemonQuestionArray = async (
     numberOfQuestions = 8;
   }
   let pokemonQuestions = [];
+  const pokemon: string[] = [];
   for (let i = 0; i < numberOfQuestions; i++) {
-    pokemonQuestions.push(await createPokemonQuestion(difficulty));
+    const question = await createPokemonQuestion(difficulty);
+    while (!pokemon.includes(question.name)) {
+      pokemonQuestions.push(question);
+      pokemon.push(question.name);
+    }
   }
   return pokemonQuestions;
 };
