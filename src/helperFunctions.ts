@@ -121,6 +121,9 @@ export const createPokemonQuestionArray = async (
   numberOfQuestions: number,
   difficulty: string
 ) => {
+  if (numberOfQuestions >= 9) {
+    numberOfQuestions = 8;
+  }
   let pokemonQuestions = [];
   for (let i = 0; i < numberOfQuestions; i++) {
     pokemonQuestions.push(await createPokemonQuestion(difficulty));
