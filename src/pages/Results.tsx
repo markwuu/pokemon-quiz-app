@@ -12,7 +12,7 @@ interface IProps {
   difficultyLevel: string | null;
 }
 
-interface Answer {
+export interface Answer {
   answer: string;
   correct: boolean | undefined;
 }
