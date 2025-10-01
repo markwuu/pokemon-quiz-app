@@ -3,6 +3,7 @@ export interface Question {
   options: string[];
   answer: number;
   selectedAnswer: number | null;
+  inputAnswer: string | null;
   cry: string | undefined;
   image: string | undefined;
   name: string;

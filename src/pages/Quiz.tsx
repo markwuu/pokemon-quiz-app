@@ -61,9 +61,14 @@ const Quiz: FC<IProps> = ({
     nextQuestion();
     setInputValue("");
     const selectedAnswer = questions[currentQuestion]?.selectedAnswer;
+    const currentInputAnswer = questions[currentQuestion]?.inputAnswer;
+
     if (selectedAnswer !== null && selectedAnswer >= 0) {
       setAnswer(questions[currentQuestion].options[selectedAnswer]);
       setSelectedOption(selectedAnswer);
+      setNextButtonDisabled(false);
+    } else if (currentInputAnswer !== null) {
+      setInputValue(currentInputAnswer);
       setNextButtonDisabled(false);
     } else {
       setAnswer("");
@@ -79,6 +84,12 @@ const Quiz: FC<IProps> = ({
           questions[currentQuestion - 2].options[prevSelectedAnswer];
         setSelectedOption(prevSelectedAnswer);
         setAnswer(prevAnswer);
+      }
+
+      const prevInputAnswer = questions[currentQuestion - 2]?.inputAnswer;
+      const prevAnswer = questions[currentQuestion - 2].inputAnswer;
+      if (prevInputAnswer !== null && prevAnswer !== null) {
+        setInputValue(prevAnswer);
       }
     }
   };

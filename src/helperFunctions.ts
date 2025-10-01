@@ -108,6 +108,7 @@ const createPokemonQuestion = async (difficulty: string) => {
     options: pokemonArray,
     answer: answerIndex,
     selectedAnswer: null,
+    inputAnswer: null,
     cry: "",
     name: pokemonArray[answerIndex],
     id: pokemonNumber,
