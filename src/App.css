@@ -140,6 +140,10 @@ button {
   padding: 7px 0;
 }
 
+.quiz-btn {
+  width: 50%;
+}
+
 .next-btn:hover:not(:disabled) {
   border: 1px solid #030202;
   opacity: 0.95;
@@ -152,6 +156,12 @@ button:disabled {
   color: #62474c;
   background-color: transparent;
   opacity: 0.85;
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  gap: 15px;
 }
 
 #difficulty-container {
