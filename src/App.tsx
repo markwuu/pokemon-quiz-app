@@ -42,10 +42,10 @@ const App: FC = () => {
 
   // useEffect(() => {
   //   console.log("start with 3 badges");
-  //   localStorage.setItem("pokemonGymBadge", JSON.stringify(0));
+  //   localStorage.setItem("pokemonGymBadge", JSON.stringify(3));
   //   localStorage.setItem(
   //     "pokemonQuizDifficulty",
-  //     JSON.stringify({ mediumDisabled: false, hardDisabled: false })
+  //     JSON.stringify({ mediumDisabled: false, hardDisabled: true })
   //   );
   // }, []);
   // console.log(questionData?.name);
@@ -197,57 +197,54 @@ const App: FC = () => {
     };
     setQuestions(questionsCopy);
     setNextButtonDisabled(true);
-    if ([Difficulty.Easy, Difficulty.Hard].includes(difficultyLevel)) {
-      if (selectedOption === questionData?.answer) {
-        setAnswers((answers: any) => {
-          return answers.map((obj: any, index: number) => {
-            return {
-              answer: obj.answer,
-              correct: currentQuestion === index + 1 ? true : obj.correct,
-            };
-          });
-        });
-      } else {
-        setAnswers((answers: any) => {
-          return answers.map((obj: any, index: number) => {
-            return {
-              answer: obj.answer,
-              correct: currentQuestion === index + 1 ? false : obj.correct,
-            };
-          });
-        });
-      }
 
-      if (currentQuestion === questions.length) {
-        let currentNumberOfCorrectAnswers = 0;
-        answers.forEach(
-          (answer: { answer: string; correct: boolean | undefined }) => {
-            if (answer.correct === true) {
-              currentNumberOfCorrectAnswers += 1;
-            }
-          }
-        );
-        const finalScore =
-          selectedOption === questionData?.answer
-            ? currentNumberOfCorrectAnswers + 1
-            : currentNumberOfCorrectAnswers;
-        setScore(finalScore);
-      }
-    } else if ([Difficulty.Medium].includes(difficultyLevel)) {
-      const containsCorrectAnswer = questionData?.alternateNames.includes(
-        encodeHTML(inputValue.toLowerCase().trim())
-      );
-      if (containsCorrectAnswer) {
-        setAnswers((answers: any) => {
-          return answers.map((obj: any, index: number) => {
-            return {
-              answer: obj.answer,
-              correct: currentQuestion === index + 1 ? true : obj.correct,
-            };
-          });
+    const isCorrectMedium = questionData?.alternateNames.includes(
+      encodeHTML(inputValue.toLowerCase().trim())
+    );
+    const isCorrectEasyHard = selectedOption === questionData?.answer;
+    if ([Difficulty.Easy, Difficulty.Hard].includes(difficultyLevel)) {
+      setAnswers((answers: any) => {
+        return answers.map((obj: any, index: number) => {
+          return {
+            answer: obj.answer,
+            correct:
+              currentQuestion === index + 1 ? isCorrectEasyHard : obj.correct,
+          };
         });
-        setScore(score + 1);
-        //fix set score for medium quiz
+      });
+    } else if ([Difficulty.Medium].includes(difficultyLevel)) {
+      setAnswers((answers: any) => {
+        return answers.map((obj: any, index: number) => {
+          return {
+            answer: obj.answer,
+            correct:
+              currentQuestion === index + 1 ? isCorrectMedium : obj.correct,
+          };
+        });
+      });
+    }
+
+    //sets score
+    if (currentQuestion === questions.length) {
+      let currentNumberOfCorrectAnswers = 0;
+      answers.forEach(
+        (answer: { answer: string; correct: boolean | undefined }) => {
+          if (answer.correct === true) {
+            currentNumberOfCorrectAnswers += 1;
+          }
+        }
+      );
+      if ([Difficulty.Easy, Difficulty.Hard].includes(difficultyLevel)) {
+        const finalScore = isCorrectEasyHard
+          ? currentNumberOfCorrectAnswers + 1
+          : currentNumberOfCorrectAnswers;
+        setScore(finalScore);
+      } else if ([Difficulty.Medium].includes(difficultyLevel)) {
+        const finalScore = isCorrectMedium
+          ? currentNumberOfCorrectAnswers + 1
+          : currentNumberOfCorrectAnswers;
+        console.log("answers", answers);
+        setScore(finalScore);
       }
     }
 
