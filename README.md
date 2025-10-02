@@ -3,7 +3,7 @@
 ## Technologies
 
 React
-Node 16.0.0
+Node 22.19.0
 
 ## APIs
 
