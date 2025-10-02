@@ -127,7 +127,6 @@ export const createPokemonQuestionArray = async (
     numberOfQuestions = 10;
   }
   let pokemonQuestions = [];
-  // const pokemon: string[] = [];
   for (let i = 0; i < numberOfQuestions; i++) {
     const question = await createPokemonQuestion(difficulty);
     pokemonQuestions.push(question);
