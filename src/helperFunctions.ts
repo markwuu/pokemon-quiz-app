@@ -124,16 +124,13 @@ export const createPokemonQuestionArray = async (
   difficulty: string
 ) => {
   if (numberOfQuestions >= 9) {
-    numberOfQuestions = 8;
+    numberOfQuestions = 10;
   }
   let pokemonQuestions = [];
-  const pokemon: string[] = [];
+  // const pokemon: string[] = [];
   for (let i = 0; i < numberOfQuestions; i++) {
     const question = await createPokemonQuestion(difficulty);
-    while (!pokemon.includes(question.name)) {
-      pokemonQuestions.push(question);
-      pokemon.push(question.name);
-    }
+    pokemonQuestions.push(question);
   }
   return pokemonQuestions;
 };
