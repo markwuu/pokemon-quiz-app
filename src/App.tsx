@@ -19,7 +19,7 @@ const App: FC = () => {
   const [showQuizScreen, setShowQuizScreen] = useState(false);
   const [quizDataLoaded, setQuizDataLoaded] = useState<boolean>(false);
   const [nextButtonDisabled, setNextButtonDisabled] = useState<boolean>(true);
-  const [prevButtonDisabled, setPrevButtonDisabled] = useState<boolean>(false);
+  const [prevButtonDisabled] = useState<boolean>(false);
   const [questionData, setQuestionData] = useState<Question>();
   const [progress, setProgress] = useState("");
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -37,13 +37,12 @@ const App: FC = () => {
   const [answers, setAnswers] = useState<any>([]);
   const [gymBadge, setGymBadge] = useState<number | undefined>(undefined);
 
-  const finalScore = `${score} out of ${questions.length}`;
   const perfectScore = score === questions.length;
   const size = 50;
 
   // useEffect(() => {
   //   console.log("start with 3 badges");
-  //   localStorage.setItem("pokemonGymBadge", JSON.stringify(8));
+  //   localStorage.setItem("pokemonGymBadge", JSON.stringify(0));
   //   localStorage.setItem(
   //     "pokemonQuizDifficulty",
   //     JSON.stringify({ mediumDisabled: false, hardDisabled: false })
@@ -194,12 +193,12 @@ const App: FC = () => {
     questionsCopy[currentQuestion - 1] = {
       ...questionsCopy[currentQuestion - 1],
       selectedAnswer: selectedOption,
+      inputAnswer: inputValue,
     };
     setQuestions(questionsCopy);
     setNextButtonDisabled(true);
     if ([Difficulty.Easy, Difficulty.Hard].includes(difficultyLevel)) {
       if (selectedOption === questionData?.answer) {
-        setScore(score + 1);
         setAnswers((answers: any) => {
           return answers.map((obj: any, index: number) => {
             return {
@@ -218,6 +217,22 @@ const App: FC = () => {
           });
         });
       }
+
+      if (currentQuestion === questions.length) {
+        let currentNumberOfCorrectAnswers = 0;
+        answers.forEach(
+          (answer: { answer: string; correct: boolean | undefined }) => {
+            if (answer.correct === true) {
+              currentNumberOfCorrectAnswers += 1;
+            }
+          }
+        );
+        const finalScore =
+          selectedOption === questionData?.answer
+            ? currentNumberOfCorrectAnswers + 1
+            : currentNumberOfCorrectAnswers;
+        setScore(finalScore);
+      }
     } else if ([Difficulty.Medium].includes(difficultyLevel)) {
       const containsCorrectAnswer = questionData?.alternateNames.includes(
         encodeHTML(inputValue.toLowerCase().trim())
@@ -232,6 +247,7 @@ const App: FC = () => {
           });
         });
         setScore(score + 1);
+        //fix set score for medium quiz
       }
     }
 
@@ -265,6 +281,7 @@ const App: FC = () => {
     ) {
       setGymBadge(gymBadge + 1);
     }
+    setInputValue("");
     setStartButtonDisabled(true);
     setDifficultyLevel(null);
     setShowQuizScreen(false);
@@ -320,9 +337,7 @@ const App: FC = () => {
         ) : null}
         {showResultsScreen && gymBadge !== undefined ? (
           <Results
-            finalScore={finalScore}
             restartQuiz={restartQuiz}
-            perfectScore={perfectScore}
             answers={answers}
             gymBadge={gymBadge}
             difficultyLevel={difficultyLevel}
