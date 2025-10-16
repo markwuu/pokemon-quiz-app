@@ -42,10 +42,10 @@ const App: FC = () => {
 
   // useEffect(() => {
   //   console.log("start with 3 badges");
-  //   localStorage.setItem("pokemonGymBadge", JSON.stringify(3));
+  //   localStorage.setItem("pokemonGymBadge", JSON.stringify(8));
   //   localStorage.setItem(
   //     "pokemonQuizDifficulty",
-  //     JSON.stringify({ mediumDisabled: false, hardDisabled: true })
+  //     JSON.stringify({ mediumDisabled: false, hardDisabled: false })
   //   );
   // }, []);
   // console.log(questionData?.name);
@@ -145,10 +145,12 @@ const App: FC = () => {
         perfectScore &&
         gymBadge !== undefined
       ) {
-        localStorage.setItem(
-          "pokemonQuizDifficulty",
-          JSON.stringify({ mediumDisabled: true, hardDisabled: true })
-        );
+        if (gymBadge < 8) {
+          localStorage.setItem(
+            "pokemonQuizDifficulty",
+            JSON.stringify({ mediumDisabled: true, hardDisabled: true })
+          );
+        }
         localStorage.setItem("pokemonGymBadge", JSON.stringify(gymBadge + 1));
       }
     };
