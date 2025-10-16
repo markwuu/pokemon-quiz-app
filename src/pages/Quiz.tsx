@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, useEffect, useRef, useState } from "react";
 import { Difficulty } from "../types/Difficulty";
 import { Question } from "../types/Question";
+import MultipleChoice from "../quizzes/MultipleChoice";
 
 interface IProps {
   setNextButtonDisabled: (arg0: boolean) => void;
@@ -33,7 +34,6 @@ const Quiz: FC<IProps> = ({
   questions,
   currentQuestion,
 }) => {
-  const options = questionData?.options;
   const pokemonCry = questionData?.cry;
   const pokemonDescription = questionData?.description;
   const [answer, setAnswer] = useState("");
@@ -137,21 +137,11 @@ const Quiz: FC<IProps> = ({
         </div>
       </div>
       {multipleChoiceDifficulties.includes(difficultyLevel) ? (
-        <div id="options" className="options">
-          {options?.map((option: string, index: number) => {
-            let className =
-              answer === option ? "option-btn selected" : "option-btn";
-
-            return (
-              <button
-                className={className}
-                key={index}
-                onClick={() => handleClick(option, index)}>
-                {option}
-              </button>
-            );
-          })}
-        </div>
+        <MultipleChoice
+          answer={answer}
+          questionData={questionData}
+          handleClick={handleClick}
+        />
       ) : null}
       {InputTextDifficulties.includes(difficultyLevel) ? (
         <input
