@@ -151,7 +151,11 @@ const App: FC = () => {
             JSON.stringify({ mediumDisabled: true, hardDisabled: true })
           );
         }
-        localStorage.setItem("pokemonGymBadge", JSON.stringify(gymBadge + 1));
+        if (gymBadge >= 8) {
+          localStorage.setItem("pokemonGymBadge", JSON.stringify(8));
+        } else {
+          localStorage.setItem("pokemonGymBadge", JSON.stringify(gymBadge + 1));
+        }
       }
     };
     if (questions.length > 0 && score === questions.length)
