@@ -1,7 +1,8 @@
 import { ChangeEvent, FC, useEffect, useRef, useState } from "react";
 import { Difficulty } from "../types/Difficulty";
 import { Question } from "../types/Question";
-import MultipleChoice from "../quizzes/MultipleChoice";
+import MultipleChoice from "../components/MultipleChoice";
+import Button from "../components/Button";
 
 interface IProps {
   setNextButtonDisabled: (arg0: boolean) => void;
@@ -155,20 +156,18 @@ const Quiz: FC<IProps> = ({
         />
       ) : null}
       <div className="buttonContainer">
-        <button
-          type="submit"
+        <Button
+          name="Back"
           className="next-btn quiz-btn"
           disabled={prevButtonDisabled}
-          onClick={handleBackClick}>
-          Back
-        </button>
-        <button
-          type="submit"
+          onClick={handleBackClick}
+        />
+        <Button
+          name="Next"
           className="next-btn quiz-btn"
           disabled={nextButtonDisabled}
-          onClick={handleNextClick}>
-          Next
-        </button>
+          onClick={handleNextClick}
+        />
       </div>
     </div>
   );
