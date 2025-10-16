@@ -50,6 +50,7 @@ export const getPokemonDescriptionByName = async (pokemonName: string) => {
         if (text.language.name === "en") {
           let description = text.flavor_text
             .replace(/[\n\f]/g, " ")
+            .replace(/\u00AD/g, "")
             .replace(regEx, "*******");
           descriptions.push(description);
         }
